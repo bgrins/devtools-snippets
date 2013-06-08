@@ -3,8 +3,12 @@
 
 (function() {
 	
-var s=document.createElement('script');
-s.setAttribute('src','https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
-document.getElementsByTagName('body')[0].appendChild(s);
+	var s = document.createElement( 'script' );
+	var prop = ( typeof s.src ).toLowerCase();
+	if (prop !== 'undefined' && prop === 'string')
+		s.src = 'http://code.jquery.com/jquery-2.0.0.min.js';
+	else
+		s.setAttribute( 'src','http://code.jquery.com/jquery-2.0.0.min.js' );
+	document.body.appendChild( s );
 
 })();
