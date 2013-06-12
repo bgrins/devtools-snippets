@@ -3,33 +3,32 @@
 
 (function() {
 
-console.group("Data URLs");
+  console.group("Data URLs");
 
-[].forEach.call(document.querySelectorAll("img"), function(i) {
+  [].forEach.call(document.querySelectorAll("img"), function(i) {
     var c = document.createElement("canvas");
     var ctx = c.getContext("2d");
     c.width = i.width;
     c.height = i.height;
-    
+
     try {
-        ctx.drawImage(i, 0, 0);
-        console.log(i, { url: c.toDataURL() });
+      ctx.drawImage(i, 0, 0);
+      console.log(i, { url: c.toDataURL() });
     }
     catch(e) {
-        console.log(i, { url: "No Permission"});
+      console.log(i, { url: "No Permission"});
     }
-});
+  });
 
-[].forEach.call(document.querySelectorAll("canvas"), function(c) {
+  [].forEach.call(document.querySelectorAll("canvas"), function(c) {
     try {
-        console.log(c, { url: c.toDataURL() });
+      console.log(c, { url: c.toDataURL() });
     }
     catch(e) {
-        console.log(c, { url: "No Permission"});
+      console.log(c, { url: "No Permission"});
     }
-});
+  });
 
-console.groupEnd("Data URLs");
-
+  console.groupEnd("Data URLs");
 
 })();
