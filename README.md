@@ -14,5 +14,7 @@ A collection of snippets for use inside of developer tools.
 
 
 ## To Use DevTools Snippets in Firefox Scratchpad
-* Open Tools > Web Developer > Scratchpad.
+
+* Open Firefox
+* Go to Tools > Web Developer > Scratchpad.
 * Copy/paste and Cmd-R / Ctrl-R to run.
