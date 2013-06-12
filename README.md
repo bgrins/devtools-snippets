@@ -1,7 +1,7 @@
 devtools-snippets
 =================
 
-A collection of snippets for use inside of developer tools.
+A collection of snippets for use inside of developer tools.  View them all on a single page: http://bgrins.github.io/devtools-snippets/.
 
 ## To Enable DevTools Snippets in Chrome
 
