@@ -25,3 +25,18 @@ A collection of snippets for use inside of developer tools.  View them all on a 
 * Copy/paste and Cmd-R / Ctrl-R to run.
 
 ![Firefox Scratchpad](screenshots/firefox-scratchpad.png)
+
+
+## Snippet screenshots
+
+View all on a single page with code: http://bgrins.github.io/devtools-snippets/
+
+[![jquerify](screenshots/jquerify.png)](snippets/jquerify.js)
+
+![log](screenshots/log.png)
+
+![showheaders](screenshots/showheaders.png)
+
+![dataurl](screenshots/dataurl.png)
+
+![allcolors](screenshots/allcolors.png)
