@@ -29,14 +29,19 @@ A collection of snippets for use inside of developer tools.  View them all on a 
 
 ## Snippet screenshots
 
-View all on a single page with code: http://bgrins.github.io/devtools-snippets/
+Or, view all on a single page with code: http://bgrins.github.io/devtools-snippets/
 
+### jquerify.js
 [![jquerify](screenshots/jquerify.png)](snippets/jquerify.js)
 
-![log](screenshots/log.png)
+### log.js
+[![log](screenshots/log.png)](snippets/log.js)
 
-![showheaders](screenshots/showheaders.png)
+### showheaders.js
+[![showheaders](screenshots/showheaders.png)](snippets/showheaders.js)
 
-![dataurl](screenshots/dataurl.png)
+### dataurl.js
+[![dataurl](screenshots/dataurl.png)](snippets/dataurl.js)
 
-![allcolors](screenshots/allcolors.png)
+### allcolors.js
+[![allcolors](screenshots/allcolors.png)](snippets/allcolors.js)
