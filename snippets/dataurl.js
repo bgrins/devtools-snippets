@@ -1,3 +1,4 @@
+// dataurl.js
 // https://github.com/bgrins/devtools-snippets
 // Print out data URLs for all images / canvases on the page
 
