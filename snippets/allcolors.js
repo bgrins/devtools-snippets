@@ -26,7 +26,7 @@
 
   console.log("All colors used in elements on the page: ");
   allColorsSorted.forEach(function(c) {
-    console.log("%c " + c.key + " (" + c.value + " times)", "color: " + c.key);
+    console.log("%c____%c " + c.key + " %c(" + c.value + " times)", "background:" + c.key + ";color:" + c.key + ";border:1px solid #333;", "", "font-weight:bold;");
   });
 
 })();
