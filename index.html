@@ -7,6 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="devtools-snippets is a collection of helpful snippets to use within browser devtools">
     <meta name="author" content="Brian Grinstead">
+    <style>
+
+
+      img {
+        width: auto\9;
+        height: auto;
+        max-width: 100%;
+        vertical-align: middle;
+        border: 0;
+        -ms-interpolation-mode: bicubic;
+      }
+      .screenshot img {
+        border: solid 2px;
+        max-width: 80%;
+        box-shadow: 0 0 10px black;
+        margin: 10px;
+        text-align: center;
+      }
+      .screenshot {
+        text-align: center;
+      }
+
+    </style>
   </head>
   <body>
     <h1>DevTools Snippets</h1>
@@ -50,8 +73,11 @@
     <a href="snippets/allcolors.js">allcolors.js</a>
     <a id="allcolors" href="#allcolors">#</a>
     <p>
-      Print out all colors from computed styles used in elements on the page.  <em>Uses styled console.log calls to visualize each color</em>  <small>Currently reading only the `color` and `background-color` properties.
+      Print out all colors from computed styles used in elements on the page.  <em>Uses styled console.log calls to visualize each color</em>  <small>Currently reading only the `color` and `background-color` properties</small>.
     </p>
+    <div class="screenshot">
+      <img src="screenshots/allcolors.png" alt="allcolors.js snippet" title="allcolors.js snippet" />
+    </div>
     <script src="http://gist-it.appspot.com/github/bgrins/devtools-snippets/blob/master/snippets/allcolors.js"></script>
 
   </body>
