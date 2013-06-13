@@ -12,7 +12,7 @@ A collection of snippets for use inside of developer tools.  View them all on a 
 * Open "Sources" panel
 * Go to "Snippets" tab, and add whichever ones you want
 
-![Chrome Flags](bgrins.github.com/devtools-snippets/screenshots/chrome-flags.png)
+![Chrome Flags](screenshots/chrome-flags.png)
 
 
 
@@ -22,4 +22,4 @@ A collection of snippets for use inside of developer tools.  View them all on a 
 * Go to Tools > Web Developer > Scratchpad.
 * Copy/paste and Cmd-R / Ctrl-R to run.
 
-![Firefox Scratchpad](bgrins.github.com/devtools-snippets/screenshots/firefox-scratchpad.png)
+![Firefox Scratchpad](screenshots/firefox-scratchpad.png)
