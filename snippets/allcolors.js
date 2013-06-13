@@ -24,9 +24,10 @@
   }
   allColorsSorted = allColorsSorted.sort(function(a, b) { return b.value-a.value; });
 
-  console.log("All colors used in elements on the page: ");
+  console.group("All colors used in elements on the page");
   allColorsSorted.forEach(function(c) {
     console.log("%c____%c " + c.key + " %c(" + c.value + " times)", "background:" + c.key + ";color:" + c.key + ";border:1px solid #333;", "", "font-weight:bold;");
   });
+  console.groupEnd("All colors used in elements on the page");
 
 })();
