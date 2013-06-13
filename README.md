@@ -14,6 +14,8 @@ A collection of snippets for use inside of developer tools.  View them all on a 
 
 ![Chrome Flags](screenshots/chrome-flags.png)
 
+![Chrome Enable Snippets](screenshots/chrome-enable-snippets.png)
+
 
 
 ## To Use DevTools Snippets in Firefox Scratchpad
