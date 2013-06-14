@@ -10,12 +10,12 @@
     props.forEach(function (prop) {
       var color = window.getComputedStyle(node, null).getPropertyValue(prop);
       if (color && color != "rgb(0, 0, 0)" && color != "rgb(255, 255, 255)") {
-        if (!allColors[color])
+        if (!allColors[color]) {
           allColors[color] = {
             count: 0,
             nodes: []
           };
-
+        }
         allColors[color].count++;
         allColors[color].nodes.push(node);
       }
