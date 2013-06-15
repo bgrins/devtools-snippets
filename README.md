@@ -45,3 +45,6 @@ Or, view all on a single page with code: http://bgrins.github.io/devtools-snippe
 
 ### allcolors.js
 [![allcolors](screenshots/allcolors.png)](snippets/allcolors.js)
+
+### performance.js
+[![performance](screenshots/performance.png)](snippets/performance.js)
