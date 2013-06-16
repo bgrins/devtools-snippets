@@ -9,6 +9,18 @@
   var timings = [];
 
   timings.push({
+    label: "Time Until Page Loaded",
+    time: t.loadEventEnd - t.navigationStart + "ms"
+  });
+  timings.push({
+    label: "Time Until DOMContentLoaded",
+    time: t.domContentLoadedEventEnd - t.navigationStart + "ms"
+  });
+  timings.push({
+    label: "Total Response Time",
+    time: t.responseEnd - t.requestStart + "ms"
+  });
+  timings.push({
     label: "Connection",
     time: t.connectEnd - t.connectStart + "ms"
   });
