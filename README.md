@@ -65,3 +65,9 @@ Print out all colors from computed styles used in elements on the page.  *Uses s
 Print out information about the [window.performance object](https://developer.mozilla.org/en-US/docs/Navigation_timing).  *Uses console.table and grouping to organize the information*.
 
 [![performance](screenshots/performance.png)](snippets/performance.js)
+
+### cssprettifier.js
+
+Script for unminifying and prettifying a CSS file written by @addyosmani and @sindresorhus. View the [cssprettifier-bookmarklet project on github](https://github.com/addyosmani/cssprettifier-bookmarklet).
+
+[![cssprettifier](screenshots/cssprettifier.png)](snippets/cssprettifier.js)
