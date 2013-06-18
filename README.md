@@ -9,12 +9,12 @@ If you have a useful snippet or updates to an existing one that you'd like to sh
 
 ## To Enable DevTools Snippets in Chrome
 
-* Open Chrome
-* Navigate to `chrome://flags` -> `Enable Developer Tools experiments`
-* Open Devtools -> `Settings` -> `Developer Tools Experiments` -> `Enable "Snippets support"`
-* Close and reopen devtools
-* Open "Sources" panel
-* Go to "Snippets" tab, and add whichever ones you want
+* Open Chrome.
+* Navigate to `chrome://flags` -> `Enable Developer Tools experiments`.
+* Open Devtools -> `Settings` -> `Developer Tools Experiments` -> `Enable "Snippets support"`.
+* Close and reopen devtools.
+* Open "Sources" panel.
+* Go to "Snippets" tab, and add whichever ones you want.
 
 ![Chrome Flags](screenshots/chrome-flags.png)
 
@@ -24,9 +24,10 @@ If you have a useful snippet or updates to an existing one that you'd like to sh
 
 ## To Use DevTools Snippets in Firefox Scratchpad
 
-* Open Firefox
+* Open Firefox.
 * Go to `Tools` > `Web Developer` > `Scratchpad`.
 * Copy/paste and Cmd-R / Ctrl-R to run.
+* `File` > `Save`, then `File` > `Open Recent` to reuse them.
 
 ![Firefox Scratchpad](screenshots/firefox-scratchpad.png)
 
