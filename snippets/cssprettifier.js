@@ -11,7 +11,7 @@
 (function () {
   'use strict';
 
-  if (document.body.childNodes.length !== 1 || document.body.childNodes[0].childNodes.length !== 1) {
+  if (document.body.childNodes.length !== 1) {
        console.log("CSS Prettify: This page doesn't appear to be a stylesheet.  Make sure you run this on a css file");
        return;
   }
