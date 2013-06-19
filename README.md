@@ -68,6 +68,6 @@ Print out information about the [window.performance object](https://developer.mo
 
 ### cssprettifier.js
 
-Script for unminifying and prettifying a CSS file written by @addyosmani and @sindresorhus. View the [cssprettifier-bookmarklet project on github](https://github.com/addyosmani/cssprettifier-bookmarklet).
+Script for unminifying and prettifying a CSS file written by [addyosmani](http://addyosmani.com) and [sindresorhus](http://sindresorhus.com). View the [cssprettifier-bookmarklet project on github](https://github.com/addyosmani/cssprettifier-bookmarklet).
 
 [![cssprettifier](screenshots/cssprettifier.png)](snippets/cssprettifier.js)
