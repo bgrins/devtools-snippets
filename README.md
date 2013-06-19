@@ -71,3 +71,9 @@ Print out information about the [window.performance object](https://developer.mo
 Script for unminifying and prettifying a CSS file written by [addyosmani](http://addyosmani.com) and [sindresorhus](http://sindresorhus.com). View the [cssprettifier-bookmarklet project on github](https://github.com/addyosmani/cssprettifier-bookmarklet).
 
 [![cssprettifier](screenshots/cssprettifier.png)](snippets/cssprettifier.js)
+
+### hashlink.js
+
+Handy way to find the closest linkable element on a page.  Run it, then click on an element, and it will give you the closest #link to that page.
+
+[![hashlink](screenshots/hashlink.gif)](snippets/hashlink.js)
