@@ -11,6 +11,11 @@
 (function () {
 	'use strict';
 
+    if (document.body.childNodes.length !== 1 || document.body.childNodes[0].childNodes.length !== 1) {
+         console.log("CSS Prettify: This page doesn't appear to be a stylesheet.  Make sure you run this on a css file");
+         return;
+    }
+
 	// cssbeautify
 	(function(){"use strict";function a(a,b){function s(a){return" "===a||"\n"===a||"   "===a||"\r"===a||"\f"===a}function t(a){return"'"===a||'"'===a}function u(a){return h>="a"&&"z">=h||h>="A"&&"Z">=h||h>="0"&&"9">=h||"-_*.:#".indexOf(a)>=0}function v(){var a;for(a=m;a>0;a-=1)g+=c.indent}function w(){g=r(g),p?g+=" {":(g+="\n",v(),g+="{"),"\n"!==i&&(g+="\n"),m+=1}function x(){var a;m-=1,g=r(g),q&&(a=g.charAt(g.length-1),";"!==a&&"{"!==a&&(g+=";")),g+="\n",v(),g+="}",f.push(g),g=""}var c,f,h,i,j,k,l,m,n,o,r,d=0,e=a.length,g="",p=!0,q=!1;for(c=arguments.length>1?b:{},c.indent===void 0&&(c.indent="    "),"string"==typeof c.openbrace&&(p="end-of-line"===c.openbrace),"boolean"==typeof c.autosemicolon&&(q=c.autosemicolon),r=String.prototype.trimRight?function(a){return a.trimRight()}:function(a){return a.replace(/\s+$/,"")},l={Start:0,AtRule:1,Block:2,Selector:3,Ruleset:4,Property:5,Separator:6,Expression:7,URL:8},m=0,k=l.Start,o=!1,f=[],a=a.replace(/\r\n/g,"\n");e>d;)if(h=a.charAt(d),i=a.charAt(d+1),d+=1,t(n))g+=h,h===n&&(n=null),"\\"===h&&i===n&&(g+=i,d+=1);else if(t(h))g+=h,n=h;else if(o)g+=h,"*"===h&&"/"===i&&(o=!1,g+=i,d+=1);else if("/"!==h||"*"!==i){if(k===l.Start){if(0===f.length&&s(h)&&0===g.length)continue;if(" ">=h||h.charCodeAt(0)>=128){k=l.Start,g+=h;continue}if(u(h)||"["===h||"@"===h){if(j=r(g),0===j.length)f.length>0&&(g="\n\n");else if("}"===j.charAt(j.length-1)||";"===j.charAt(j.length-1))g=j+"\n\n";else for(;;){if(i=g.charAt(g.length-1)," "!==i&&9!==i.charCodeAt(0))break;g=g.substr(0,g.length-1)}g+=h,k="@"===h?l.AtRule:l.Selector;continue}}if(k!==l.AtRule)if(k!==l.Block)if(k!==l.Selector)if(k!==l.Ruleset)if(k!==l.Property)if(k!==l.Separator)if(k!==l.Expression)k===l.URL&&")"===h&&g.charAt("\\"!==g.length-1)?(g+=h,k=l.Expression):g+=h;else{if("}"===h){x(),k=l.Start,m>0&&(k=l.Block);continue}if(";"===h){g=r(g),g+=";\n",k=l.Ruleset;continue}if(g+=h,"("===h&&"l"===g.charAt(g.length-2)&&"r"===g.charAt(g.length-3)&&"u"===g.charAt(g.length-4)){k=l.URL;continue}}else{if(!s(h)){g+=h,k=l.Expression;continue}t(i)&&(k=l.Expression)}else{if(":"===h){g=r(g),g+=": ",k=l.Expression,s(i)&&(k=l.Separator);continue}if("}"===h){x(),k=l.Start,m>0&&(k=l.Block);continue}g+=h}else{if("}"===h){x(),k=l.Start,m>0&&(k=l.Block);continue}if("\n"===h){g=r(g),g+="\n";continue}if(!s(h)){g=r(g),g+="\n",v(),g+=h,k=l.Property;continue}g+=h}else{if("{"===h){w(),k=l.Ruleset;continue}if("}"===h){x(),k=l.Start;continue}g+=h}else{if(u(h)){if(j=r(g),0===j.length)f.length>0&&(g="\n\n");else if("}"===j.charAt(j.length-1))g=j+"\n\n";else for(;;){if(i=g.charAt(g.length-1)," "!==i&&9!==i.charCodeAt(0))break;g=g.substr(0,g.length-1)}v(),g+=h,k=l.Selector;continue}if("}"===h){x(),k=l.Start;continue}g+=h}else{if(";"===h){g+=h,k=l.Start;continue}if("{"===h){j=r(g),w(),k="@font-face"===j?l.Ruleset:l.Block;continue}g+=h}}else o=!0,g+=h,g+=i,d+=1;return g=f.join("")+g}"undefined"!=typeof exports?module.exports=exports=a:"object"==typeof window&&(window.cssbeautify=a)})();
 	// prism
@@ -26,5 +31,5 @@
 	document.head.innerHTML = '';
 	document.head.appendChild(prismStyle);
 	document.body.innerHTML = '<code><pre>' + highlighted + '</pre></code>';
-	
+
 })();
