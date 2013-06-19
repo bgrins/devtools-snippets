@@ -44,6 +44,6 @@
 
     document.addEventListener('mousedown', logHashlink, true);
 
-    return "haslink: Click on an element to log it's closest hash link";
+    return "hashlink: Click on an element to log it's closest hash link";
 
 })();
