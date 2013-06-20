@@ -4,20 +4,40 @@
 
 (function () {
   var allColors = {};
-  var props = ["background-color", "color"];
+  var props = ["background-color", "color", "border-color"];
 
   [].forEach.call(document.querySelectorAll("*"), function (node) {
     props.forEach(function (prop) {
       var color = window.getComputedStyle(node, null).getPropertyValue(prop);
-      if (color && color != "rgb(0, 0, 0)" && color != "rgb(255, 255, 255)") {
-        if (!allColors[color]) {
-          allColors[color] = {
-            count: 0,
-            nodes: []
-          };
+
+      if (color) {
+        var colors = [];
+        if (prop === "border-color") {
+          var match = color.match(/(rgba?\(\s*(\d{1,3}\%?)\s*,\s*(\d{1,3}\%?)\s*,\s*(\d{1,3}\%?)\s*(?:\s*,\s*(\d+(?:\.\d+)?)\s*)?\))/g);
+
+          match && match.forEach(function(c) {
+            if (colors.indexOf(c) === -1) {
+              colors.push(c);
+            }
+          });
         }
-        allColors[color].count++;
-        allColors[color].nodes.push(node);
+
+        if (colors.length === 0) {
+          colors.push(color);
+        }
+
+        colors.forEach(function(c) {
+          if (c !== "rgb(0, 0, 0)" && c !== "rgb(255, 255, 255)" && c !== "rgba(0, 0, 0, 0)" && c !== "rgba(255, 255, 255, 0)" && c !== "rgba(0, 0, 0, 1)" && c !== "rgba(255, 255, 255, 1)") {
+            if (!allColors[c]) {
+              allColors[c] = {
+                count: 0,
+                nodes: []
+              };
+            }
+            allColors[c].count++;
+            allColors[c].nodes.push(node);
+          }
+        });
       }
     });
   });
@@ -41,7 +61,7 @@
 
   console.group("All colors used in elements on the page");
   allColorsSorted.forEach(function (c) {
-    console.groupCollapsed("%c____%c " + c.key + " %c(" + c.value.count + " times)",
+    console.groupCollapsed("%c    %c " + c.key + " %c(" + c.value.count + " times)",
       colorStyle(c.key), nameStyle, countStyle);
     c.value.nodes.forEach(function (node) {
       console.log(node);
