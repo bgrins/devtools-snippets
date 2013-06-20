@@ -4,7 +4,7 @@
 
 (function () {
   var allColors = {};
-  var props = ["backgroud-color", "color"];
+  var props = ["background-color", "color"];
 
   [].forEach.call(document.querySelectorAll("*"), function (node) {
     props.forEach(function (prop) {
