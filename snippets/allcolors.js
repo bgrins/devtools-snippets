@@ -45,7 +45,7 @@
 
   console.group("All colors used in elements on the page");
   allColorsSorted.forEach(function (c) {
-    console.groupCollapsed("%c____%c " + c.key + " %c(" + c.value.count + " times)",
+    console.groupCollapsed("%c    %c " + c.key + " %c(" + c.value.count + " times)",
       colorStyle(c.key), nameStyle, countStyle);
     c.value.nodes.forEach(function (node) {
       console.log(node);
