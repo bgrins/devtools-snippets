@@ -79,3 +79,9 @@ Handy way to find the closest linkable element on a page.  Run it, then click on
 [![hashlink](screenshots/hashlink.png)](snippets/hashlink.js)
 
 [![hashlink](screenshots/hashlink.gif)](snippets/hashlink.js)
+
+### querystringvalues.js
+
+Print a table of query string (GET) values.  This can be helpful, especially when trying to read the values from a long or complicated URL that may otherwise need to be pasted into another editor to read.  Implementation by [mattpass](https://github.com/mattpass).
+
+[![querystringvalues](screenshots/querystringvalues.png)](snippets/querystringvalues.js)
