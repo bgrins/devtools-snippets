@@ -4,9 +4,10 @@
 
 (function () {
   var allColors = {};
-  var props = ["background-color", "color"];
+  var props = ["background-color", "color", "border-top-color", "border-right-color", "border-bottom-color", "border-left-color"];
 
   [].forEach.call(document.querySelectorAll("*"), function (node) {
+    var nodeColors = {};
     props.forEach(function (prop) {
       var color = window.getComputedStyle(node, null).getPropertyValue(prop);
       if (color && color != "rgb(0, 0, 0)" && color != "rgb(255, 255, 255)") {
@@ -16,8 +17,11 @@
             nodes: []
           };
         }
-        allColors[color].count++;
-        allColors[color].nodes.push(node);
+        if (!nodeColors[color]) {
+          allColors[color].count++; 
+          allColors[color].nodes.push(node); 
+        }
+        nodeColors[color] = true;
       }
     });
   });
@@ -41,7 +45,7 @@
 
   console.group("All colors used in elements on the page");
   allColorsSorted.forEach(function (c) {
-    console.groupCollapsed("%c____%c " + c.key + " %c(" + c.value.count + " times)",
+    console.groupCollapsed("%c    %c " + c.key + " %c(" + c.value.count + " times)",
       colorStyle(c.key), nameStyle, countStyle);
     c.value.nodes.forEach(function (node) {
       console.log(node);
