@@ -14,19 +14,19 @@
 
     try {
       ctx.drawImage(i, 0, 0);
-      console.log(i, { url: c.toDataURL() });
+      console.log(i, c.toDataURL());
     }
     catch(e) {
-      console.log(i, { url: "No Permission"});
+      console.log(i, "No Permission");
     }
   });
 
   [].forEach.call(document.querySelectorAll("canvas"), function(c) {
     try {
-      console.log(c, { url: c.toDataURL() });
+      console.log(c, c.toDataURL());
     }
     catch(e) {
-      console.log(c, { url: "No Permission"});
+      console.log(c, "No Permission");
     }
   });
 
