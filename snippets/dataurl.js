@@ -17,7 +17,7 @@
       console.log(i, c.toDataURL());
     }
     catch(e) {
-      console.log(i, "No Permission");
+      console.log(i, "No Permission - try opening this image in a new tab and running the snippet again?", i.src);
     }
   });
 
