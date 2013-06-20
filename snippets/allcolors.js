@@ -5,12 +5,13 @@
 (function () {
   var allColors = {};
   var props = ["background-color", "color", "border-top-color", "border-right-color", "border-bottom-color", "border-left-color"];
+  var skipColors = { "rgb(0, 0, 0)": 1, "rgba(0, 0, 0, 0)": 1, "rgb(255, 255, 255)": 1 };
 
   [].forEach.call(document.querySelectorAll("*"), function (node) {
     var nodeColors = {};
     props.forEach(function (prop) {
       var color = window.getComputedStyle(node, null).getPropertyValue(prop);
-      if (color && color != "rgb(0, 0, 0)" && color != "rgb(255, 255, 255)") {
+      if (color && !skipColors[color]) {
         if (!allColors[color]) {
           allColors[color] = {
             count: 0,
@@ -18,8 +19,8 @@
           };
         }
         if (!nodeColors[color]) {
-          allColors[color].count++; 
-          allColors[color].nodes.push(node); 
+          allColors[color].count++;
+          allColors[color].nodes.push(node);
         }
         nodeColors[color] = true;
       }
