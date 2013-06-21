@@ -1,6 +1,6 @@
 // allcolors.js
 // https://github.com/bgrins/devtools-snippets
-// Print out all colors used in elements on the page
+// Print out CSS colors used in elements on the page
 
 (function () {
   var allColors = {};
