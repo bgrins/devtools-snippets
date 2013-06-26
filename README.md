@@ -9,7 +9,7 @@ If you have a useful snippet or updates to an existing one that you'd like to sh
 
 ## To Enable DevTools Snippets in Chrome
 
-*Note: snippets are enabled by default in Chrome Canary and will be usable without settings steps soon. You can read more about [snippets at the Chrome developer tools documentation](https://developers.google.com/chrome-developer-tools/docs/authoring-development-workflow#snippets)*
+*Note: snippets are enabled by default in Chrome Canary and will be usable without changing your settings soon. You can read more about [snippets at the Chrome developer tools documentation](https://developers.google.com/chrome-developer-tools/docs/authoring-development-workflow#snippets)*
 
 * Open Chrome.
 * Navigate to `chrome://flags` -> `Enable Developer Tools experiments`.
