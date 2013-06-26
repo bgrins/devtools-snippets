@@ -26,7 +26,7 @@ If you have a useful snippet or updates to an existing one that you'd like to sh
 
 ## To Use DevTools Snippets in Firefox Scratchpad
 
-* Note: you can read more about [scratchpad at the  Firefox developers tools documentation](https://developer.mozilla.org/en-US/docs/Tools/Scratchpad)*
+*Note: you can read more about [scratchpad at the  Firefox developers tools documentation](https://developer.mozilla.org/en-US/docs/Tools/Scratchpad)*
 
 * Open Firefox.
 * Go to `Tools` > `Web Developer` > `Scratchpad`.
