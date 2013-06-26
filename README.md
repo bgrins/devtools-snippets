@@ -9,6 +9,8 @@ If you have a useful snippet or updates to an existing one that you'd like to sh
 
 ## To Enable DevTools Snippets in Chrome
 
+*Note: snippets are enabled by default in Chrome Canary and will be usable without settings steps soon. You can read more about [snippets at the Chrome developer tools documentation](https://developers.google.com/chrome-developer-tools/docs/authoring-development-workflow#snippets)*
+
 * Open Chrome.
 * Navigate to `chrome://flags` -> `Enable Developer Tools experiments`.
 * Open Devtools -> `Settings` -> `Developer Tools Experiments` -> `Enable "Snippets support"`.
@@ -23,6 +25,8 @@ If you have a useful snippet or updates to an existing one that you'd like to sh
 ![Chrome Snippets](screenshots/chrome-snippets.png)
 
 ## To Use DevTools Snippets in Firefox Scratchpad
+
+* Note: you can read more about [scratchpad at the  Firefox developers tools documentation](https://developer.mozilla.org/en-US/docs/Tools/Scratchpad)*
 
 * Open Firefox.
 * Go to `Tools` > `Web Developer` > `Scratchpad`.
