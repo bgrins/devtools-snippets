@@ -16,8 +16,8 @@ task :deploy do
 end
 
 task :build do
-  FileUtils.cd(File.dirname(__FILE__))
-  replace_snippets('snippets.html', 'index.html')
+    FileUtils.cd(File.dirname(__FILE__))
+    replace_snippets('snippets.html', 'index.html')
 end
 
 def replace_snippets(infile, outfile)
