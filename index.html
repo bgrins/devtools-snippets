@@ -368,47 +368,47 @@
 
 <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
-	<span class="kd">function</span> <span class="nx">logHashlink</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nx">logHashlink</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
 
-		<span class="nb">document</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">'mousedown'</span><span class="p">,</span> <span class="nx">logHashlink</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">'mousedown'</span><span class="p">,</span> <span class="nx">logHashlink</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
 
-		<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
-		<span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-		<span class="k">while</span> <span class="p">(</span><span class="nx">node</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nx">node</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">tagName</span> <span class="o">===</span> <span class="s2">"A"</span> <span class="o">&amp;&amp;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">id</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
-				<span class="k">break</span><span class="p">;</span>
-			<span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">tagName</span> <span class="o">===</span> <span class="s2">"A"</span> <span class="o">&amp;&amp;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">id</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="p">}</span>
 
-			<span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">id</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
-				<span class="k">break</span><span class="p">;</span>
-			<span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">id</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="p">}</span>
 
-			<span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">;</span>
-		<span class="p">}</span>
+      <span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">;</span>
+    <span class="p">}</span>
 
-		<span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-		<span class="nx">e</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
 
-		<span class="kd">var</span> <span class="nx">URL</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">origin</span> <span class="o">+</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span> <span class="o">+</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">URL</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">origin</span> <span class="o">+</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span> <span class="o">+</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">;</span>
 
-		<span class="nx">console</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="s2">"Hashlink"</span><span class="p">);</span>
-		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Clicked on "</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">);</span>
-		<span class="k">if</span> <span class="p">(</span><span class="nx">id</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"No ID Found - closest anchor: "</span> <span class="o">+</span>  <span class="nx">URL</span><span class="p">);</span>
-		<span class="p">}</span>
-		<span class="k">else</span> <span class="p">{</span>
-			<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Closest linkable element: "</span><span class="p">,</span> <span class="nx">node</span><span class="p">);</span>
-			<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">URL</span> <span class="o">+</span> <span class="s2">"#"</span> <span class="o">+</span> <span class="nx">id</span><span class="p">);</span>
-		<span class="p">}</span>
-		<span class="nx">console</span><span class="p">.</span><span class="nx">groupEnd</span><span class="p">(</span><span class="s2">"Hashlink"</span><span class="p">);</span>
-	<span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="s2">"Hashlink"</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Clicked on "</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">id</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"No ID Found - closest anchor: "</span> <span class="o">+</span>  <span class="nx">URL</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Closest linkable element: "</span><span class="p">,</span> <span class="nx">node</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">URL</span> <span class="o">+</span> <span class="s2">"#"</span> <span class="o">+</span> <span class="nx">id</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">groupEnd</span><span class="p">(</span><span class="s2">"Hashlink"</span><span class="p">);</span>
+  <span class="p">}</span>
 
-	<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'mousedown'</span><span class="p">,</span> <span class="nx">logHashlink</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'mousedown'</span><span class="p">,</span> <span class="nx">logHashlink</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
 
-	<span class="k">return</span> <span class="s2">"hashlink: Click on an element to log it's closest hash link"</span><span class="p">;</span>
+  <span class="k">return</span> <span class="s2">"hashlink: Click on an element to log it's closest hash link"</span><span class="p">;</span>
 
 <span class="p">})();</span>
 </pre></div>
