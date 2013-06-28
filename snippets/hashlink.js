@@ -4,46 +4,46 @@
 
 (function() {
 
-	function logHashlink(e) {
+  function logHashlink(e) {
 
-		document.removeEventListener('mousedown', logHashlink, true);
+    document.removeEventListener('mousedown', logHashlink, true);
 
-		var node = e.target;
-		var id = null;
-		while (node != null) {
+    var node = e.target;
+    var id = null;
+    while (node != null) {
 
-			if (node.tagName === "A" && node.name) {
-				id = node.name;
-				break;
-			}
+      if (node.tagName === "A" && node.name) {
+        id = node.name;
+        break;
+      }
 
-			if (node.id) {
-				id = node.id;
-				break;
-			}
+      if (node.id) {
+        id = node.id;
+        break;
+      }
 
-			node = node.parentNode;
-		}
+      node = node.parentNode;
+    }
 
-		e.preventDefault();
-		e.stopPropagation();
+    e.preventDefault();
+    e.stopPropagation();
 
-		var URL = window.location.origin + window.location.pathname + window.location.search;
+    var URL = window.location.origin + window.location.pathname + window.location.search;
 
-		console.group("Hashlink");
-		console.log("Clicked on ", e.target);
-		if (id === null) {
-			console.log("No ID Found - closest anchor: " +  URL);
-		}
-		else {
-			console.log("Closest linkable element: ", node);
-			console.log(URL + "#" + id);
-		}
-		console.groupEnd("Hashlink");
-	}
+    console.group("Hashlink");
+    console.log("Clicked on ", e.target);
+    if (id === null) {
+      console.log("No ID Found - closest anchor: " +  URL);
+    }
+    else {
+      console.log("Closest linkable element: ", node);
+      console.log(URL + "#" + id);
+    }
+    console.groupEnd("Hashlink");
+  }
 
-	document.addEventListener('mousedown', logHashlink, true);
+  document.addEventListener('mousedown', logHashlink, true);
 
-	return "hashlink: Click on an element to log it's closest hash link";
+  return "hashlink: Click on an element to log it's closest hash link";
 
 })();
