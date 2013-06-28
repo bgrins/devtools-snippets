@@ -4,11 +4,14 @@ require 'nokogiri'
 
 task :deploy do
     system "git checkout gh-pages"
-    #system "git merge master"
-    #system "git push origin gh-pages"
+    system "git merge master"
 
     Rake::Task["build"].execute
 
+    system "git commit -am 'Deploying to gh-pages'"
+    system "git status"
+
+    system "git push origin gh-pages"
     system "git checkout master"
 end
 
