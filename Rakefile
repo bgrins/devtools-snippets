@@ -2,6 +2,16 @@ require 'nokogiri'
 
 # <div class="snippet" data-src="snippets/jquerify.js"></div>
 
+task :deploy do
+    system "git checkout gh-pages"
+    #system "git merge master"
+    #system "git push origin gh-pages"
+
+    Rake::Task["build"].execute
+
+    system "git checkout master"
+end
+
 task :build do
   FileUtils.cd(File.dirname(__FILE__))
   replace_snippets('snippets.html', 'index.html')
