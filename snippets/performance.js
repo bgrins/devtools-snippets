@@ -1,6 +1,6 @@
 // performance.js
 // https://github.com/bgrins/devtools-snippets
-// Print out window.performance information
+// Print out window.performance information.
 // https://developer.mozilla.org/en-US/docs/Navigation_timing
 
 (function () {
