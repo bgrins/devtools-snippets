@@ -42,6 +42,10 @@ body {
   font-weight: bold;
 }
 
+.header, #project-link {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+}
+
 img {
   width: auto\9;
   height: auto;
@@ -62,10 +66,12 @@ img {
 }
 
 a {
-  color: #069;
+  color: #038BCF;
   text-decoration: none;
 }
-
+a:hover {
+  text-decoration: underline;
+}
 p {
   margin: 0 0 20px;
   padding: 0;
@@ -79,7 +85,7 @@ strong {
 h1, h2, h3, h4, h5, h6 {
   color: #222;
   padding: 0;
-  margin: 0 0 20px;
+  margin: 0 0 15px;
   line-height: 1.2;
 }
 
@@ -93,10 +99,12 @@ h1, h2, h3 {
 
 h1 {
   font-size: 28px;
+  padding-bottom: 3px;
+  border-bottom: solid 1px #eee;
 }
 
 h2 {
-  color: #393939;
+  color: #444;
 }
 
 h3, h4, h5, h6 {
