@@ -13,7 +13,6 @@ body {
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAAFVBMVEXk5OTn5+ft7e319fX29vb5+fn///++GUmVAAAALUlEQVQIHWNICnYLZnALTgpmMGYIFWYIZTA2ZFAzTTFlSDFVMwVyQhmAwsYMAKDaBy0axX/iAAAAAElFTkSuQmCC");
 }
 
-
 .wrapper {
   background: white;
   width: 90%;
@@ -31,6 +30,9 @@ body {
 .content {
   background: #DEDEDE;
   padding: 10px;
+}
+.content a[id] {
+  font-weight: bold;
 }
 
 #project-link {
