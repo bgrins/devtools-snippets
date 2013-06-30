@@ -1,6 +1,6 @@
 // querystringvalues.js
 // https://github.com/bgrins/devtools-snippets
-// Print out key/value pairs from querystring
+// Print out key/value pairs from querystring.
 
 (function() {
 

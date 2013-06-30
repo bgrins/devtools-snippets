@@ -1,6 +1,6 @@
 // log.js
 // https://github.com/bgrins/devtools-snippets
-// Adds a `log` function to window object
+// Adds a `log` function to window object.
 // http://www.briangrinstead.com/blog/console-log-helper-function
 
 (function() {

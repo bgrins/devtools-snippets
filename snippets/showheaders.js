@@ -1,6 +1,6 @@
 // showheaders.js
 // https://github.com/bgrins/devtools-snippets
-// Print out response headers for current URL
+// Print out response headers for current URL.
 
 (function() {
 
