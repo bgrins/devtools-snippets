@@ -1,6 +1,6 @@
 // hashlink.js
 // https://github.com/bgrins/devtools-snippets
-// Click on an element to print out the closest hash link
+// Click on an element to print out the closest hash link.
 
 (function() {
 

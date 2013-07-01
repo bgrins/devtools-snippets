@@ -1,7 +1,9 @@
+// cssprettifier.js
+// https://github.com/bgrins/devtools-snippets
+// Unminify and prettify a CSS file.
+
 /*
  * cssprettifier-bookmarklet
- * A bookmarklet for unminifying and prettifying CSS
- * in the browser
  * Copyright (c) 2013 Addy Osmani, Sindre Sorhus
  * CSSBeautify (c) Sencha, Ariya Hidayat
  * Prism (c) Lea Verou
