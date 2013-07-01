@@ -17,12 +17,14 @@
         <a id="project-link" href="https://github.com/bgrins/devtools-snippets">View on Github</a>
       </div>
       <div class="content">
-        <p>
-          <strong>Instructions:</strong>  The snippets can be used in any browser console.  Chrome provides a '<a href="https://github.com/bgrins/devtools-snippets#to-enable-devtools-snippets-in-chrome">snippets</a>' feature that can be used to manage the scripts, while Firefox has a '<a href="https://developer.mozilla.org/en-US/docs/Tools/Scratchpad">scratchpad</a>' feature that lets you run, edit, and save chunks of JavaScript.
-        </p>
-        <p>
-          View the <a href="https://github.com/bgrins/devtools-snippets">devtools-snippets project page</a>.   For more information about using them check out the <a href="https://github.com/bgrins/devtools-snippets/blob/master/README.md">README</a>.  Here is an <a href="http://www.briangrinstead.com/blog/devtools-snippets"> article about snippets</a> detailing why you might use them and additional features that would be nice.
-        </p>
+        <div class="alert">
+          <p>
+            <strong>Instructions:</strong>  The snippets can be used in any browser console.  Chrome provides a '<a href="https://github.com/bgrins/devtools-snippets#to-enable-devtools-snippets-in-chrome">snippets</a>' feature that can be used to manage the scripts, while Firefox has a '<a href="https://developer.mozilla.org/en-US/docs/Tools/Scratchpad">scratchpad</a>' feature that lets you run, edit, and save chunks of JavaScript.
+          </p>
+          <p>
+            View the <a href="https://github.com/bgrins/devtools-snippets">devtools-snippets project page</a>.   For more information about using them check out the <a href="https://github.com/bgrins/devtools-snippets/blob/master/README.md">README</a>.  Here is an <a href="http://www.briangrinstead.com/blog/devtools-snippets"> article about snippets</a> detailing why you might use them and additional features that would be nice.
+          </p>
+        </div>
         <hr>
 <h3>
           <a href="snippets/jquerify.js">jquerify.js</a>
@@ -64,7 +66,7 @@
         <div class="snippet" data-src="snippets/log.js">
 <div class="highlight"><pre><span class="c1">// log.js</span>
 <span class="c1">// https://github.com/bgrins/devtools-snippets</span>
-<span class="c1">// Adds a `log` function to window object</span>
+<span class="c1">// Adds a `log` function to window object.</span>
 <span class="c1">// http://www.briangrinstead.com/blog/console-log-helper-function</span>
 
 <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -89,7 +91,7 @@
         <div class="snippet" data-src="snippets/showheaders.js">
 <div class="highlight"><pre><span class="c1">// showheaders.js</span>
 <span class="c1">// https://github.com/bgrins/devtools-snippets</span>
-<span class="c1">// Print out response headers for current URL</span>
+<span class="c1">// Print out response headers for current URL.</span>
 
 <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
@@ -125,7 +127,7 @@
         <div class="snippet" data-src="snippets/dataurl.js">
 <div class="highlight"><pre><span class="c1">// dataurl.js</span>
 <span class="c1">// https://github.com/bgrins/devtools-snippets</span>
-<span class="c1">// Print out data URLs for all images / canvases on the page</span>
+<span class="c1">// Print out data URLs for all images / canvases on the page.</span>
 
 <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
@@ -174,7 +176,7 @@
         <div class="snippet" data-src="snippets/allcolors.js">
 <div class="highlight"><pre><span class="c1">// allcolors.js</span>
 <span class="c1">// https://github.com/bgrins/devtools-snippets</span>
-<span class="c1">// Print out CSS colors used in elements on the page</span>
+<span class="c1">// Print out CSS colors used in elements on the page.</span>
 
 <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">allColors</span> <span class="o">=</span> <span class="p">{};</span>
@@ -333,10 +335,12 @@
           <img src="screenshots/cssprettifier.png" alt="cssprettifier.js snippet" title="cssprettifier.js snippet">
 </div>
         <div class="snippet" data-src="snippets/cssprettifier.js">
-<div class="highlight"><pre><span class="cm">/*</span>
+<div class="highlight"><pre><span class="c1">// cssprettifier.js</span>
+<span class="c1">// https://github.com/bgrins/devtools-snippets</span>
+<span class="c1">// Unminify and prettify a CSS file.</span>
+
+<span class="cm">/*</span>
 <span class="cm"> * cssprettifier-bookmarklet</span>
-<span class="cm"> * A bookmarklet for unminifying and prettifying CSS</span>
-<span class="cm"> * in the browser</span>
 <span class="cm"> * Copyright (c) 2013 Addy Osmani, Sindre Sorhus</span>
 <span class="cm"> * CSSBeautify (c) Sencha, Ariya Hidayat</span>
 <span class="cm"> * Prism (c) Lea Verou</span>
@@ -388,7 +392,7 @@
         <div class="snippet" data-src="snippets/hashlink.js">
 <div class="highlight"><pre><span class="c1">// hashlink.js</span>
 <span class="c1">// https://github.com/bgrins/devtools-snippets</span>
-<span class="c1">// Click on an element to print out the closest hash link</span>
+<span class="c1">// Click on an element to print out the closest hash link.</span>
 
 <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
@@ -452,7 +456,7 @@
         <div class="snippet" data-src="snippets/querystringvalues.js">
 <div class="highlight"><pre><span class="c1">// querystringvalues.js</span>
 <span class="c1">// https://github.com/bgrins/devtools-snippets</span>
-<span class="c1">// Print out key/value pairs from querystring</span>
+<span class="c1">// Print out key/value pairs from querystring.</span>
 
 <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
