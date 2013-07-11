@@ -138,6 +138,9 @@ code, pre {
   font-size: 12px;
   overflow-x: auto;
 }
+code {
+  color: #933;
+}
 
 pre {
   padding: 20px;
