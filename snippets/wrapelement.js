@@ -1,6 +1,5 @@
-// wrapelememnt.js
+// wrapelement.js
 // https://github.com/bgrins/devtools-snippets
-//
 // Wrap a given element in a given type of element
 // wrapElement('.foo', 'h1');
 // wrapElement(document.querySelector('#bar'), 'div');
@@ -26,4 +25,5 @@
       oldParent.appendChild(newParent);
     }
   }
+
 })();
