@@ -1,6 +1,7 @@
-// disableHTML5Form.js
+// plainforms.js
 // https://github.com/bgrins/devtools-snippets
-// Remove HTML5 form validation features.
+// Remove HTML5 form features (validations and special input types).
+
 (function () {
 
   ['maxlength', 'required', 'min', 'max', 'pattern', 'step' ].forEach(function (attr) {

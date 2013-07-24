@@ -95,3 +95,11 @@ Print a table of query string (GET) values.  This can be helpful, especially whe
  Exposes a window function `wrapElement(element, tag)`.  The first parameter is either a DOM Node, or a selector string, and the second parameter is the tag name for the wrapping element.  Implementation by [gkatsev](https://github.com/gkatsev).
 
 [![wrapelement](screenshots/wrapelement.png)](snippets/wrapelement.js)
+
+### plainforms.js
+
+ HTML5 Forms are great, but sometimes you don't want the browser to validate or present special controls for them. For instance, if you want to test server-side validation of some fields, you do not want the browser to prevent invalid data for that field type. This snippet finds all of the HTML5 input elements, sets their type attributes to "text" (and keeps any values that were set), and removes any validations enforced by the browser.  Implementation by [stroebjo](https://github.com/stroebjo).
+
+[![plainforms](screenshots/plainforms.gif)](snippets/plainforms.js)
+
+
