@@ -89,3 +89,9 @@ Handy way to find the closest linkable element on a page.  Run it, then click on
 Print a table of query string (GET) values.  This can be helpful, especially when trying to read the values from a long or complicated URL that may otherwise need to be pasted into another editor to read.  Implementation by [mattpass](https://github.com/mattpass).
 
 [![querystringvalues](screenshots/querystringvalues.png)](snippets/querystringvalues.js)
+
+### wrapelement.js
+
+ Exposes a window function `wrapElement(element, tag)`.  The first parameter is either a DOM Node, or a selector string, and the second parameter is the tag name for the wrapping element.  Implementation by [gkatsev](https://github.com/gkatsev).
+
+[![wrapelement](screenshots/wrapelement.png)](snippets/wrapelement.js)
