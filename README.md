@@ -102,4 +102,10 @@ Print a table of query string (GET) values.  This can be helpful, especially whe
 
 [![plainforms](screenshots/plainforms.gif)](snippets/plainforms.js)
 
+### formcontrols.js
+
+Shows all html form elements with their values and types in a nice table.  Adds a new table for each form on the page.  Implementation by [Kienz](https://github.com/Kienz).
+
+[![formcontrols](screenshots/formcontrols.png)](snippets/formcontrols.js)
+
 
