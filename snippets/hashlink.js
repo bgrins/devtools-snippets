@@ -42,7 +42,15 @@
     console.groupEnd("Hashlink");
   }
 
+  function stopClickEvent(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    document.removeEventListener('click', stopClickEvent, true);
+  }
+
   document.addEventListener('mousedown', logHashlink, true);
+  document.addEventListener('click', stopClickEvent, true);
 
   return "hashlink: Click on an element to log it's closest hash link";
 
