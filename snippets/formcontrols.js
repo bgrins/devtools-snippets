@@ -9,13 +9,13 @@
   for (var i = 0, len = forms.length; i < len; i++) {
     var tab = [ ];
 
-    console.group("HTMLForm \"" + forms[i].name + "\"");
+    console.group("HTMLForm \"" + forms[i].name + "\": " + forms[i].action);
     console.log("Name:   "+forms[i].name+"\nMethod: "+forms[i].method.toUpperCase()+"\nAction: "+forms[i].action || "null");
 
     ["input", "textarea", "select"].forEach(function (control) {
       [].forEach.call(forms[i].querySelectorAll(control), function (node) {
         tab.push({
-          "NodeName": node.nodeName.toLowerCase(),
+          "Element": node,
           "Type": node.type,
           "Name": node.name,
           "Value": node.value,
