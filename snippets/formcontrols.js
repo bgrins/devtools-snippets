@@ -10,7 +10,7 @@
     var tab = [ ];
 
     console.group("HTMLForm \"" + forms[i].name + "\": " + forms[i].action);
-    console.log("Name:   "+forms[i].name+"\nMethod: "+forms[i].method.toUpperCase()+"\nAction: "+forms[i].action || "null");
+    console.log("Element:", forms[i], "\nName:    "+forms[i].name+"\nMethod:  "+forms[i].method.toUpperCase()+"\nAction:  "+forms[i].action || "null");
 
     ["input", "textarea", "select"].forEach(function (control) {
       [].forEach.call(forms[i].querySelectorAll(control), function (node) {
