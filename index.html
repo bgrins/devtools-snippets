@@ -435,7 +435,15 @@
     <span class="nx">console</span><span class="p">.</span><span class="nx">groupEnd</span><span class="p">(</span><span class="s2">"Hashlink"</span><span class="p">);</span>
   <span class="p">}</span>
 
+  <span class="kd">function</span> <span class="nx">stopClickEvent</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="nx">stopClickEvent</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="p">}</span>
+
   <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'mousedown'</span><span class="p">,</span> <span class="nx">logHashlink</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="nx">stopClickEvent</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
 
   <span class="k">return</span> <span class="s2">"hashlink: Click on an element to log it's closest hash link"</span><span class="p">;</span>
 
@@ -551,6 +559,51 @@
   <span class="p">});</span>
 
   <span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">"All HTML5 form validations have been removed."</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+        <hr>
+<h3>
+          <a href="snippets/formcontrols.js">formcontrols.js</a>
+          <a id="formcontrols" href="#formcontrols">#</a>
+        </h3>
+
+        <p>
+          Shows all html form elements with their values and types in a nice table.  Adds a new table for each form on the page.
+        </p>
+        <div class="screenshot">
+          <img src="screenshots/formcontrols.png" alt="formcontrols.js snippet" title="formcontrols.js snippet">
+</div>
+        <div class="snippet" data-src="snippets/formcontrols.js">
+<div class="highlight"><pre><span class="c1">// formcontrols.js</span>
+<span class="c1">// https://github.com/bgrins/devtools-snippets</span>
+<span class="c1">// Print out forms and their controls</span>
+
+<span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">forms</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">"form"</span><span class="p">);</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">forms</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">tab</span> <span class="o">=</span> <span class="p">[</span> <span class="p">];</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="s2">"HTMLForm \""</span> <span class="o">+</span> <span class="nx">forms</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">"\": "</span> <span class="o">+</span> <span class="nx">forms</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">action</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Element:"</span><span class="p">,</span> <span class="nx">forms</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="s2">"\nName:    "</span><span class="o">+</span><span class="nx">forms</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">name</span><span class="o">+</span><span class="s2">"\nMethod:  "</span><span class="o">+</span><span class="nx">forms</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">method</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span><span class="o">+</span><span class="s2">"\nAction:  "</span><span class="o">+</span><span class="nx">forms</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">action</span> <span class="o">||</span> <span class="s2">"null"</span><span class="p">);</span>
+
+    <span class="p">[</span><span class="s2">"input"</span><span class="p">,</span> <span class="s2">"textarea"</span><span class="p">,</span> <span class="s2">"select"</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">control</span><span class="p">)</span> <span class="p">{</span>
+      <span class="p">[].</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">forms</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="nx">control</span><span class="p">),</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">tab</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+          <span class="s2">"Element"</span><span class="o">:</span> <span class="nx">node</span><span class="p">,</span>
+          <span class="s2">"Type"</span><span class="o">:</span> <span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span>
+          <span class="s2">"Name"</span><span class="o">:</span> <span class="nx">node</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+          <span class="s2">"Value"</span><span class="o">:</span> <span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+          <span class="s2">"Pretty Value"</span><span class="o">:</span> <span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="o">||</span> <span class="nx">node</span><span class="p">.</span><span class="nx">value</span> <span class="o">===</span> <span class="s2">""</span> <span class="o">?</span> <span class="nx">node</span><span class="p">.</span><span class="nx">value</span> <span class="o">:</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">))</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">table</span><span class="p">(</span><span class="nx">tab</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">groupEnd</span><span class="p">();</span>
+  <span class="p">}</span>
 <span class="p">})();</span>
 </pre></div>
 </div>
