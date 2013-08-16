@@ -29,7 +29,7 @@
  		$el = Array.prototype.slice.call($el, 0, $el.length);
 
 		while($el.length){
-  			url = document.Css($el.shift(),'background-image');
+  			url = getStyle($el.shift(),'background-image');
   			if(url) {
   		 		url = /url\(['"]?([^")]+)/.exec(url) || [];
   			}
@@ -61,11 +61,11 @@
 		getAllimages();
 
 		for(var i = 0, j = urls.length; i < j; i++) {
-			console.image(urls[i]);
+			consoleImage(urls[i]);
 		}
 	}
 
-	document.Css = function($el, css){
+	function getStyle($el, css){
  		if(!$el || !$el.style) return '';
 
  		var style = css.replace(/\-([a-z])/g, function(a, b){
@@ -80,18 +80,7 @@
  		return $el.style[style] || view.getComputedStyle($el,"").getPropertyValue(css) || '';
 	}
 
-	Array.prototype.indexOf = Array.prototype.indexOf || 
- 		function(pos, index){
- 			index = index || 0;
- 			var L = this.length;
- 			while(index < L){
-  				if(this[index] === pos) return pos;
-  				++index;
- 			}
- 			return -1;
-		}
-
-	console.image = function(url, scale) {
+	function consoleImage(url, scale) {
 		scale = scale || 1;
 		var img = new Image();
 
@@ -106,4 +95,4 @@
 
 	init();
 
-}(console);
+})(console);
