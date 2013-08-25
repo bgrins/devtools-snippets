@@ -6,6 +6,7 @@
 (function () {
 
   var t = window.performance.timing;
+  var lt = chrome.loadTimes();
   var timings = [];
 
   timings.push({
@@ -19,6 +20,16 @@
   timings.push({
     label: "Total Response Time",
     time: t.responseEnd - t.requestStart + "ms"
+  });
+  if(lt.wasNpnNegotiated) {
+    timings.push({
+      label: "NPN negotiation protocol",
+      time: lt.npnNegotiatedProtocol
+    });
+  }
+  timings.push({
+    label: "Connection Info",
+    time: lt.connectionInfo
   });
   timings.push({
     label: "Connection",
@@ -43,6 +54,10 @@
   timings.push({
     label: "DOMContentLoaded Event",
     time: t.domContentLoadedEventEnd - t.domContentLoadedEventStart + "ms"
+  });
+  timings.push({
+    label: "First paint after Document load",
+    time: Math.ceil(lt.firstPaintTime - lt.finishDocumentLoadTime) + "ms"
   });
 
   var navigation = window.performance.navigation;
