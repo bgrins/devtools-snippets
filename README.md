@@ -112,5 +112,5 @@ Shows all html form elements with their values and types in a nice table.  Adds 
 
 Overwrite all "link" and "script" tag by adding Date.now() at the end of "href" and "src" attributes, respectively
 
-[![formcontrols](screenshots/formcontrols.png)](snippets/formcontrols.js)
+[![cachebooster](screenshots/cachebooster.png)](snippets/cachebooster.js)
 
