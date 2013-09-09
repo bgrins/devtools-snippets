@@ -3,7 +3,7 @@
 // Generate downloadable chrome.i18n messages file for location.href.
 // See http://developer.chrome.com/extensions/i18n.html.
 // Messages are based on innerText or value attribute, keyed by class attribute.
-// Generate downloadable HTML file with corresponding i18n-content attributes.
+// Generate downloadable HTML file with i18n-content attributes added.
 // Generate downloadable script to initialize localized messages on load.
 try {
     console.log(location.href);
