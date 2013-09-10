@@ -1,13 +1,39 @@
 // html_i18n_content.js
 // https://github.com/anaran/devtools-snippets
 // Generate downloadable chrome.i18n messages file for location.href.
-// See http://developer.chrome.com/extensions/i18n.html.
+// See http://developer.chrome.com/extensions/i18n.html
 // Messages are based on innerText or value attribute, keyed by class attribute.
+// $Placeholders$ are added to messages.json as well.
 // Generate downloadable HTML file with corresponding i18n-content attributes.
 // Generate downloadable script to initialize localized messages on load.
 try {
     console.log(location.href);
     var hsh = {};
+    var replacer = [];
+    replacer.push('message', 'description', 'placeholders', 'content', 'example');
+    var addKeyValuePlaceHolders = function(messages, key, value) {
+        messages[key] = {
+            'message': value,
+                'description': value
+        };
+        var placeHolders = value.match(/\$([^$]+)\$/g);
+        if (placeHolders) {
+            messages[key]['placeholders'] = {};
+            for (j = 0, jlen = placeHolders.length; j < jlen; j++) {
+                var placeHolderName = placeHolders[j].replace(/\$/g, '').toLowerCase();
+                messages[key]['placeholders'][placeHolderName] = {
+                    'content': '$' + (j + 1),
+                        'example': value
+                };
+                if (!replacer.some(function(value) {
+                    return value === placeHolderName;
+                })) {
+                    replacer.push(placeHolderName);
+                }
+            }
+        }
+        return messages;
+    };
     var i18nForValueAttribute = function(select, messages) {
         var nds = document.querySelectorAll(select);
         for (i = 0, len = nds.length; i < len; i++) {
@@ -16,8 +42,9 @@ try {
                 var key = nds[i].className;
                 if (key && value) {
                     nds[i].setAttribute('i18n-content', key);
-                    nds[i].setAttribute('value', '');
-                    messages[key] = {'message': value,'description': value};
+                    // Better keep value for round-tripping.
+                    // nds[i].setAttribute('value', '');
+                    messages = addKeyValuePlaceHolders(messages, key, value);
                 }
             }
         }
@@ -31,17 +58,20 @@ try {
                 var value = value.replace(/\s+/g, ' ').trim();
                 if (key && value) {
                     nds[i].setAttribute('i18n-content', key);
-                    nds[i].innerText = '';
-                    messages[key] = {'message': value,'description': value};
+                    // Better keep value for round-tripping.
+                    // nds[i].innerText = '';
+                    messages = addKeyValuePlaceHolders(messages, key, value);
                 }
             }
         }
     };
     i18nForInnerText('*', hsh);
     i18nForValueAttribute('input[value]', hsh);
-    var messagesString = JSON.stringify(hsh, Object.getOwnPropertyNames(hsh).sort().concat('message', 'description'), 4);
-    var htmlFileText = '<!DOCTYPE ' + document.doctype.name + '>\n' 
-    + document.documentElement.outerHTML;
+    Object.getOwnPropertyNames(hsh).sort().forEach(function(value) {
+        replacer.push(value);
+    });
+    var messagesString = JSON.stringify(hsh, replacer, 4);
+    var htmlFileText = '<!DOCTYPE ' + document.doctype.name + '>\n' + document.documentElement.outerHTML;
     var htmlFileName = location.pathname.split('/').pop();
     var makeDownloadLink = function(data, filename, style) {
         var blob = new window.Blob([data], {
@@ -59,7 +89,7 @@ try {
             }, 500);
         };
     }
-    var applyChromeI18nMessages = function () {
+    var applyChromeI18nMessages = function() {
         // This generated function body is wrapped in (...)(); to execute on load.
         // This will only install the onreadystatechange event handler
         // to be run when the document load is complete.
@@ -68,7 +98,7 @@ try {
         // in its head element.
         try {
             document.addEventListener('readystatechange', function(event) {
-                if (event.target.readyState !== "complete") {
+                if (event.target.readyState !== 'complete') {
                     return;
                 }
                 (function() {
@@ -86,7 +116,7 @@ try {
             }, false);
         } catch (exception) {
             window.alert('exception.stack: ' + exception.stack);
-            console.log((new Date()).toJSON(), "exception.stack:", exception.stack);
+            console.log((new Date()).toJSON(), 'exception.stack:', exception.stack);
         }
     };
     makeDownloadLink(messagesString, 'messages.json', 'position:fixed;top:2em;left:50%;opacity:0.5');
