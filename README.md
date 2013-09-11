@@ -114,9 +114,11 @@ Generate downloadable files, all based on contents of location.href, for automat
 
 * messages.json containing chrome.i18n messages (with placeholder) for element.innerText and input[value]
 * location.href with i18n-content tags added (text and placeholders preserved for round-trip)
-* applyChromeI18nMessages.js to be included in location.href to initialize localized messages on load
+* applyChromeI18nMessages.js to include in location.href to initialize localized messages on load
+
+See http://developer.chrome.com/extensions/i18n.html
 
 Implementation by [anaran](https://github.com/anaran).
 
-[![html_i18n_content](screenshots/html_i18n_content.png)](snippets/html_i18n_content.js)
+[![html_i18n_content](screenshots/html_i18n_content.gif)](snippets/html_i18n_content.js)
 
