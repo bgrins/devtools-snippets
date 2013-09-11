@@ -110,13 +110,12 @@ Shows all html form elements with their values and types in a nice table.  Adds 
 
 ### html_i18n_content.js
 
-Generate downloadable files, all based on contents of location.href, for automated generation of...
+Generate downloadable files, based on location.href,
+for [i18n](http://developer.chrome.com/extensions/i18n.html) of Chrome App or Extension:
 
 * messages.json containing chrome.i18n messages (with placeholder) for element.innerText and input[value]
 * location.href with i18n-content tags added (text and placeholders preserved for round-trip)
 * applyChromeI18nMessages.js to include in location.href to initialize localized messages on load
-
-See http://developer.chrome.com/extensions/i18n.html
 
 Implementation by [anaran](https://github.com/anaran).
 
