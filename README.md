@@ -108,7 +108,7 @@ Shows all html form elements with their values and types in a nice table.  Adds 
 
 [![formcontrols](screenshots/formcontrols.png)](snippets/formcontrols.js)
 
-### html_i18n_content.js<a id="html_i18n_content"></a>
+### html_i18n_content.js
 
 Generate downloadable files, all based on contents of location.href, for automated generation of...
 
