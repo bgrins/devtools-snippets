@@ -1,4 +1,4 @@
-//Cache Booster
+//Cache Buster
 (function (){
   var rep = /.*\?.*/,
       links = document.getElementsByTagName('link'),
