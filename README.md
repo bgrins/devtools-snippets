@@ -121,3 +121,9 @@ Implementation by [anaran](https://github.com/anaran).
 
 [![html_i18n_content](screenshots/html_i18n_content.gif)](snippets/html_i18n_content.js)
 
+### cachebuster.js
+
+Overwrite all `link` and (optionally) `script` tags by adding Date.now() at the end of `href` and `src` attributes, respectively. By default processing `scripts` is not performed, you should change the variable `process_scripts` to true to run these.
+
+[![cachebuster](screenshots/cachebuster.png)](snippets/cachebuster.js)
+
