@@ -6,7 +6,7 @@
 (function () {
 
   var t = window.performance.timing;
-  var lt = chrome.loadTimes();
+  var lt = window.chrome.loadTimes() || "";
   var timings = [];
 
   timings.push({
@@ -21,16 +21,18 @@
     label: "Total Response Time",
     time: t.responseEnd - t.requestStart + "ms"
   });
-  if(lt.wasNpnNegotiated) {
-    timings.push({
-      label: "NPN negotiation protocol",
-      time: lt.npnNegotiatedProtocol
-    });
+  if(lt) {
+  	if(lt.wasNpnNegotiated) {
+    	timings.push({
+      	label: "NPN negotiation protocol",
+      	time: lt.npnNegotiatedProtocol
+    	});
+  	}
+  	timings.push({
+    	label: "Connection Info",
+    	time: lt.connectionInfo
+  	});
   }
-  timings.push({
-    label: "Connection Info",
-    time: lt.connectionInfo
-  });
   timings.push({
     label: "Connection",
     time: t.connectEnd - t.connectStart + "ms"
@@ -55,10 +57,12 @@
     label: "DOMContentLoaded Event",
     time: t.domContentLoadedEventEnd - t.domContentLoadedEventStart + "ms"
   });
-  timings.push({
-    label: "First paint after Document load",
-    time: Math.ceil(lt.firstPaintTime - lt.finishDocumentLoadTime) + "ms"
-  });
+  if(lt) {
+  	timings.push({
+    	label: "First paint after Document load",
+    	time: Math.ceil(lt.firstPaintTime - lt.finishDocumentLoadTime) + "ms"
+  	});
+  }
 
   var navigation = window.performance.navigation;
   var navigationTypes = { };
