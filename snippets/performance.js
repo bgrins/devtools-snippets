@@ -6,6 +6,7 @@
 (function () {
 
   var t = window.performance.timing;
+  var lt = window.chrome && window.chrome.loadTimes && window.chrome.loadTimes();
   var timings = [];
 
   timings.push({
@@ -44,6 +45,22 @@
     label: "DOMContentLoaded Event",
     time: t.domContentLoadedEventEnd - t.domContentLoadedEventStart + "ms"
   });
+  if(lt) {
+    if(lt.wasNpnNegotiated) {
+      timings.push({
+        label: "NPN negotiation protocol",
+        time: lt.npnNegotiatedProtocol
+      });
+    }
+    timings.push({
+      label: "Connection Info",
+      time: lt.connectionInfo
+    });
+    timings.push({
+      label: "First paint after Document load",
+      time: Math.ceil(lt.firstPaintTime - lt.finishDocumentLoadTime) + "ms"
+    });
+  }
 
   var navigation = window.performance.navigation;
   var navigationTypes = { };
@@ -63,7 +80,7 @@
 
   console.group("Timing");
   console.log(window.performance.timing);
-  console.table(timings);
+  console.table(timings, ["label", "time"]);
   console.groupEnd("Timing");
 
   console.groupEnd("window.performance");
