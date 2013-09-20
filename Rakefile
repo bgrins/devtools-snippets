@@ -1,5 +1,25 @@
-require 'nokogiri'
+require 'kramdown'
 
+task :build do
+
+    text = File.read("Readme.md")
+    krammed = Kramdown::Document.new(text).to_html
+
+    cmd = "pygmentize -f html " + "snippets/allcolors.js"
+    content = `#{cmd}`
+
+    template = File.read("template.html");
+    regex = /<!-- REPLACE -->/
+
+    all_files = Dir["snippets/**/**"]
+
+    print all_files
+    File.open("index.html", "w") do |io|
+        io.write template.gsub(regex, krammed + content)
+    end
+end
+
+=begin
 # <div class="snippet" data-src="snippets/jquerify.js"></div>
 
 task :deploy do
@@ -35,5 +55,5 @@ def replace_snippets(infile, outfile)
         io.write renderedhtml
     end
 end
-
+=end
 task :default => [:build]
