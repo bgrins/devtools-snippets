@@ -27,140 +27,109 @@
         </div>
         <hr />
 
-        <h1 id="devtools-snippets">devtools-snippets</h1>
+        <div class="snippets">
+        <div id='allcolors'><div class='snippet'><h3><a href='snippets/allcolors/allcolors.js'>allcolors.js</a> <a href='#allcolors'>#</a></h3>
 
-<p>A collection of helpful snippets to use inside of browser devtools.</p>
-
-<p>View them all on a single page: http://bgrins.github.io/devtools-snippets/ or all of them <a href="https://github.com/bgrins/devtools-snippets/tree/master/snippets">inside of github</a>.  I have a <a href="http://www.briangrinstead.com/blog/devtools-snippets">more long winded article about snippets</a> detailing why you might use them and additional features that would be nice, if you are interested.</p>
-
-<p>If you have a useful snippet or updates to an existing one that you’d like to share, please contribute it or open an issue!  Feel free to use, modify, or share any of these snippets.</p>
-
-<h2 id="to-enable-devtools-snippets-in-chrome">To Enable DevTools Snippets in Chrome</h2>
-
-<p><em>Note: snippets are enabled by default in Chrome Canary and will be usable without changing your settings soon. You can read more about <a href="https://developers.google.com/chrome-developer-tools/docs/authoring-development-workflow#snippets">snippets at the Chrome developer tools documentation</a>.</em></p>
-
-<ul>
-  <li>Open Chrome.</li>
-  <li>Navigate to <code>chrome://flags</code> -&gt; <code>Enable Developer Tools experiments</code>.</li>
-  <li>Open Devtools -&gt; <code>Settings</code> -&gt; <code>Developer Tools Experiments</code> -&gt; <code>Enable "Snippets support"</code>.</li>
-  <li>Close and reopen devtools.</li>
-  <li>Open “Sources” panel.</li>
-  <li>Go to “Snippets” tab, and add whichever ones you want.</li>
-</ul>
-
-<p><img src="screenshots/chrome-flags.png" alt="Chrome Flags" /></p>
-
-<p><img src="screenshots/chrome-enable-snippets.png" alt="Chrome Enable Snippets" /></p>
-
-<p><img src="screenshots/chrome-snippets.png" alt="Chrome Snippets" /></p>
-
-<h2 id="to-use-devtools-snippets-in-firefox-scratchpad">To Use DevTools Snippets in Firefox Scratchpad</h2>
-
-<p><em>Note: you can read more about <a href="https://developer.mozilla.org/en-US/docs/Tools/Scratchpad">scratchpad at the  Firefox developers tools documentation</a>.</em></p>
-
-<ul>
-  <li>Open Firefox.</li>
-  <li>Go to <code>Tools</code> &gt; <code>Web Developer</code> &gt; <code>Scratchpad</code>.</li>
-  <li>Copy/paste and Cmd-R / Ctrl-R to run.</li>
-  <li><code>File</code> &gt; <code>Save</code>, then <code>File</code> &gt; <code>Open Recent</code> to reuse them.</li>
-</ul>
-
-<p><img src="screenshots/firefox-scratchpad.png" alt="Firefox Scratchpad" /></p>
-
-<h2 id="snippet-screenshots">Snippet screenshots</h2>
-
-<p>Or, view all on a single page with code: http://bgrins.github.io/devtools-snippets/</p>
-
-<h3 id="jquerifyjs">jquerify.js</h3>
-<p>Includes jQuery onto a page if it is not yet included.</p>
-
-<p><a href="snippets/jquerify.js"><img src="screenshots/jquerify.png" alt="jquerify" /></a></p>
-
-<h3 id="logjs">log.js</h3>
-<p>Adds a <code>log</code> function to window object.</p>
-
-<p><a href="snippets/log.js"><img src="screenshots/log.png" alt="log" /></a></p>
-
-<h3 id="showheadersjs">showheaders.js</h3>
-<p>Pretty prints the HTTP headers for the current page into the console.  <em>Uses console.table</em>.</p>
-
-<p><a href="snippets/showheaders.js"><img src="screenshots/showheaders.png" alt="showheaders" /></a></p>
-
-<h3 id="dataurljs">dataurl.js</h3>
-<p>Convert all images on the page to data URLs.  <em>Note: this only works for images that are on the same domain as the current page</em>.</p>
-
-<p><a href="snippets/dataurl.js"><img src="screenshots/dataurl.png" alt="dataurl" /></a></p>
-
-<h3 id="allcolorsjs">allcolors.js</h3>
 <p>Print out all colors from computed styles used in elements on the page.  <em>Uses styled console.log calls to visualize each color</em>.</p>
 
-<p><a href="snippets/allcolors.js"><img src="screenshots/allcolors.png" alt="allcolors" /></a></p>
+<p><a href="snippets/allcolors/allcolors.js"><img src="snippets/allcolors/allcolors.png" alt="allcolors" /></a></p>
+</div><div class="highlight"><pre><span class="c1">// allcolors.js</span>
+<span class="c1">// https://github.com/bgrins/devtools-snippets</span>
+<span class="c1">// Print out CSS colors used in elements on the page.</span>
 
-<h3 id="performancejs">performance.js</h3>
-<p>Print out information about the <a href="https://developer.mozilla.org/en-US/docs/Navigation_timing">window.performance object</a>.  <em>Uses console.table and grouping to organize the information</em>.</p>
+<span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">allColors</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="kd">var</span> <span class="nx">props</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;background-color&quot;</span><span class="p">,</span> <span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;border-top-color&quot;</span><span class="p">,</span> <span class="s2">&quot;border-right-color&quot;</span><span class="p">,</span> <span class="s2">&quot;border-bottom-color&quot;</span><span class="p">,</span> <span class="s2">&quot;border-left-color&quot;</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">skipColors</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;rgb(0, 0, 0)&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;rgba(0, 0, 0, 0)&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;rgb(255, 255, 255)&quot;</span><span class="o">:</span> <span class="mi">1</span> <span class="p">};</span>
 
-<p><a href="snippets/performance.js"><img src="screenshots/performance.png" alt="performance" /></a></p>
+  <span class="p">[].</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">),</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">nodeColors</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">props</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">prop</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="kc">null</span><span class="p">).</span><span class="nx">getPropertyValue</span><span class="p">(</span><span class="nx">prop</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">color</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">skipColors</span><span class="p">[</span><span class="nx">color</span><span class="p">])</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">allColors</span><span class="p">[</span><span class="nx">color</span><span class="p">])</span> <span class="p">{</span>
+          <span class="nx">allColors</span><span class="p">[</span><span class="nx">color</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">count</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nx">nodes</span><span class="o">:</span> <span class="p">[]</span>
+          <span class="p">};</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">nodeColors</span><span class="p">[</span><span class="nx">color</span><span class="p">])</span> <span class="p">{</span>
+          <span class="nx">allColors</span><span class="p">[</span><span class="nx">color</span><span class="p">].</span><span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+          <span class="nx">allColors</span><span class="p">[</span><span class="nx">color</span><span class="p">].</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nx">nodeColors</span><span class="p">[</span><span class="nx">color</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
 
-<h3 id="cssprettifierjs">cssprettifier.js</h3>
+  <span class="kd">var</span> <span class="nx">allColorsSorted</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">allColors</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">allColorsSorted</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+      <span class="nx">key</span><span class="o">:</span> <span class="nx">i</span><span class="p">,</span>
+      <span class="nx">value</span><span class="o">:</span> <span class="nx">allColors</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+  <span class="nx">allColorsSorted</span> <span class="o">=</span> <span class="nx">allColorsSorted</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">b</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">count</span> <span class="o">-</span> <span class="nx">a</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">count</span><span class="p">;</span>
+  <span class="p">});</span>
 
-<p>Script for unminifying and prettifying a CSS file written by <a href="http://addyosmani.com">addyosmani</a> and <a href="http://sindresorhus.com">sindresorhus</a>. View the <a href="https://github.com/addyosmani/cssprettifier-bookmarklet">cssprettifier-bookmarklet project on github</a>.</p>
+  <span class="kd">var</span> <span class="nx">nameStyle</span> <span class="o">=</span> <span class="s2">&quot;font-weight:normal;&quot;</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">countStyle</span> <span class="o">=</span> <span class="s2">&quot;font-weight:bold;&quot;</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">colorStyle</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">&quot;background:&quot;</span> <span class="o">+</span> <span class="nx">color</span> <span class="o">+</span> <span class="s2">&quot;;color:&quot;</span> <span class="o">+</span> <span class="nx">color</span> <span class="o">+</span> <span class="s2">&quot;;border:1px solid #333;&quot;</span><span class="p">;</span>
+  <span class="p">};</span>
 
-<p><a href="snippets/cssprettifier.js"><img src="screenshots/cssprettifier.png" alt="cssprettifier" /></a></p>
-
-<h3 id="hashlinkjs">hashlink.js</h3>
-
-<p>Handy way to find the closest linkable element on a page.  Run it, then click on an element, and it will give you the closest #link to that page.</p>
-
-<p><a href="snippets/hashlink.js"><img src="screenshots/hashlink.png" alt="hashlink" /></a></p>
-
-<p><a href="snippets/hashlink.js"><img src="screenshots/hashlink.gif" alt="hashlink" /></a></p>
-
-<h3 id="querystringvaluesjs">querystringvalues.js</h3>
-
-<p>Print a table of query string (GET) values.  This can be helpful, especially when trying to read the values from a long or complicated URL that may otherwise need to be pasted into another editor to read.  Implementation by <a href="https://github.com/mattpass">mattpass</a>.</p>
-
-<p><a href="snippets/querystringvalues.js"><img src="screenshots/querystringvalues.png" alt="querystringvalues" /></a></p>
-
-<h3 id="wrapelementjs">wrapelement.js</h3>
-
-<p>Exposes a window function <code>wrapElement(element, tag)</code>.  The first parameter is either a DOM Node, or a selector string, and the second parameter is the tag name for the wrapping element.  Implementation by <a href="https://github.com/gkatsev">gkatsev</a>.</p>
-
-<p><a href="snippets/wrapelement.js"><img src="screenshots/wrapelement.png" alt="wrapelement" /></a></p>
-
-<h3 id="plainformsjs">plainforms.js</h3>
-
-<p>HTML5 Forms are great, but sometimes you don’t want the browser to validate or present special controls for them. For instance, if you want to test server-side validation of some fields, you do not want the browser to prevent invalid data for that field type. This snippet finds all of the HTML5 input elements, sets their type attributes to “text” (and keeps any values that were set), and removes any validations enforced by the browser.  Implementation by <a href="https://github.com/stroebjo">stroebjo</a>.</p>
-
-<p><a href="snippets/plainforms.js"><img src="screenshots/plainforms.gif" alt="plainforms" /></a></p>
-
-<h3 id="formcontrolsjs">formcontrols.js</h3>
-
-<p>Shows all html form elements with their values and types in a nice table.  Adds a new table for each form on the page.  Implementation by <a href="https://github.com/Kienz">Kienz</a>.</p>
-
-<p><a href="snippets/formcontrols.js"><img src="screenshots/formcontrols.png" alt="formcontrols" /></a></p>
-
-<h3 id="htmli18ncontentjs">html_i18n_content.js</h3>
-
-<p>Generate downloadable files, based on location.href,
-for <a href="http://developer.chrome.com/extensions/i18n.html">i18n</a> of Chrome App or Extension:</p>
-
-<ul>
-  <li>messages.json containing chrome.i18n messages (with placeholders) for element.innerText and input[value]</li>
-  <li>location.href with i18n-content tags added (text and placeholders preserved to ease round-tripping changes)</li>
-  <li>applyChromeI18nMessages.js to include in location.href to initialize localized messages on load</li>
-</ul>
-
-<p>Implementation by <a href="https://github.com/anaran">anaran</a>.</p>
-
-<p><a href="snippets/html_i18n_content.js"><img src="screenshots/html_i18n_content.gif" alt="html_i18n_content" /></a></p>
-
-<h3 id="cachebusterjs">cachebuster.js</h3>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="s2">&quot;All colors used in elements on the page&quot;</span><span class="p">);</span>
+  <span class="nx">allColorsSorted</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">groupCollapsed</span><span class="p">(</span><span class="s2">&quot;%c    %c &quot;</span> <span class="o">+</span> <span class="nx">c</span><span class="p">.</span><span class="nx">key</span> <span class="o">+</span> <span class="s2">&quot; %c(&quot;</span> <span class="o">+</span> <span class="nx">c</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">count</span> <span class="o">+</span> <span class="s2">&quot; times)&quot;</span><span class="p">,</span>
+      <span class="nx">colorStyle</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">key</span><span class="p">),</span> <span class="nx">nameStyle</span><span class="p">,</span> <span class="nx">countStyle</span><span class="p">);</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">groupEnd</span><span class="p">();</span>
+  <span class="p">});</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">groupEnd</span><span class="p">(</span><span class="s2">&quot;All colors used in elements on the page&quot;</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div><div id='cachebuster'><div class='snippet'><h3><a href='snippets/cachebuster/cachebuster.js'>cachebuster.js</a> <a href='#cachebuster'>#</a></h3>
 
 <p>Overwrite all <code>link</code> and (optionally) <code>script</code> tags by adding Date.now() at the end of <code>href</code> and <code>src</code> attributes, respectively. By default processing <code>scripts</code> is not performed, you should change the variable <code>process_scripts</code> to true to run these.</p>
 
 <p><a href="snippets/cachebuster.js"><img src="screenshots/cachebuster.png" alt="cachebuster" /></a></p>
+</div><div class="highlight"><pre><span class="c1">//Cache Buster</span>
+<span class="p">(</span><span class="kd">function</span> <span class="p">(){</span>
+  <span class="kd">var</span> <span class="nx">rep</span> <span class="o">=</span> <span class="sr">/.*\?.*/</span><span class="p">,</span>
+      <span class="nx">links</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;link&#39;</span><span class="p">),</span>
+      <span class="nx">scripts</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">),</span>
+      <span class="nx">process_scripts</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">links</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">link</span> <span class="o">=</span> <span class="nx">links</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span>
+        <span class="nx">href</span> <span class="o">=</span> <span class="nx">link</span><span class="p">.</span><span class="nx">href</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">rep</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">href</span><span class="p">)){</span>
+      <span class="nx">link</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">href</span><span class="o">+</span><span class="s1">&#39;&amp;&#39;</span><span class="o">+</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+      <span class="nx">link</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">href</span><span class="o">+</span><span class="s1">&#39;?&#39;</span><span class="o">+</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+    <span class="p">}</span>
 
+  <span class="p">}</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">process_scripts</span><span class="p">){</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">scripts</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="nx">scripts</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span>
+          <span class="nx">src</span> <span class="o">=</span> <span class="nx">script</span><span class="p">.</span><span class="nx">src</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">rep</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">src</span><span class="p">)){</span>
+        <span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">src</span><span class="o">+</span><span class="s1">&#39;&amp;&#39;</span><span class="o">+</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+      <span class="p">}</span>
+      <span class="k">else</span><span class="p">{</span>
+        <span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">src</span><span class="o">+</span><span class="s1">&#39;?&#39;</span><span class="o">+</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+      <span class="p">}</span>
 
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+        </div>
 
         <div id="footer">
           <strong>devtools-snippets</strong> is maintained by <a href="http://twitter.com/bgrins">@bgrins</a> and <a href="https://github.com/bgrins/devtools-snippets/network/members">contributors</a>.  Please let me know if you want to add or change any snippets by <a href="https://github.com/bgrins/devtools-snippets/issues">opening an issue or pull request</a>.
