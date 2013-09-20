@@ -31,4 +31,7 @@ task :build do
 
 end
 
+# Migration:
+# mkdir snippets/wrapelement; mv snippets/wrapelement.js snippets/wrapelement; mv screenshots/wrapelement.* snippets/wrapelement; touch snippets/wrapelement/README.md;
+
 task :default => [:build]
