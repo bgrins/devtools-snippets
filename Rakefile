@@ -19,7 +19,7 @@ task :build do
         cmd = "pygmentize -f html " + js_file
         pretty_code = `#{cmd}`
 
-        new_heading = "<h3><a href='#{js_file}'>#{file}.js</a> <a href='##{file}'>#</a></h3>"
+        new_heading = "<h3><a href='https://github.com/bgrins/devtools-snippets/tree/master/#{js_file}'>#{file}.js</a> <a href='##{file}'>#</a> &nbsp; <small style='float:right'><a href='#{js_file}'>(view raw)</a></small></h3>"
         krammed = krammed.gsub(/<h3.*<\/h3>/, new_heading);
         krammed = krammed.gsub(/\"#{file}/, "\"#{folder}#{file}");
         krammed = "<div class='snippet'>" + krammed + "</div>";
