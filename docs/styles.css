@@ -66,12 +66,14 @@ img {
   border: 0;
   -ms-interpolation-mode: bicubic;
 }
-.screenshot img {
+.screenshot img, .snippets img {
   border: solid 2px;
   max-width: 80%;
   box-shadow: 0 0 10px black;
   margin: 10px;
   text-align: center;
+  margin: 0 auto;
+  display: block;
 }
 .screenshot {
   text-align: center;
