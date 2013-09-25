@@ -9,4 +9,4 @@ for [i18n](http://developer.chrome.com/extensions/i18n.html) of Chrome App or Ex
 
 Implementation by [anaran](https://github.com/anaran).
 
-[![html_i18n_content](snippets/html_i18n_content/html_i18n_content.gif)](snippets/html_i18n_content/html_i18n_content.js)
+[![html_i18n_content](html_i18n_content.gif)](html_i18n_content.js)

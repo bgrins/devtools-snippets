@@ -17,12 +17,13 @@ task :build do
         krammed = Kramdown::Document.new(readme).to_html
 
         cmd = "pygmentize -f html " + js_file
-        content = `#{cmd}`
+        pretty_code = `#{cmd}`
 
         new_heading = "<h3><a href='#{js_file}'>#{file}.js</a> <a href='##{file}'>#</a></h3>"
         krammed = krammed.gsub(/<h3.*<\/h3>/, new_heading);
+        krammed = krammed.gsub(/\"#{file}/, "\"#{folder}#{file}");
         krammed = "<div class='snippet'>" + krammed + "</div>";
-        markup = markup + "<div id='" + file + "'>" + krammed + content + "</div>"
+        markup = markup + "<div id='" + file + "'>" + krammed + pretty_code + "</div>"
     end
 
     File.open("index.html", "w") do |io|
