@@ -31,18 +31,20 @@ body {
   background: #DEDEDE;
   padding: 10px;
 }
+
 .content a[id] {
   font-weight: bold;
 }
+
 .alert {
   background: rgba(224, 255, 200, 0.4);
   padding: 3px 5px;
   border: solid 1px #eee;
 }
+
 .alert p:last-child {
   margin-bottom: 0;
 }
-
 
 #project-link {
   position:absolute;
@@ -66,15 +68,18 @@ img {
   border: 0;
   -ms-interpolation-mode: bicubic;
 }
+
 .screenshot img, .snippets img {
   border: solid 2px;
-  max-width: 80%;
+  max-width: 70%;
+  max-height: 700px;
   box-shadow: 0 0 10px black;
   margin: 10px;
   text-align: center;
   margin: 0 auto;
   display: block;
 }
+
 .screenshot {
   text-align: center;
 }
