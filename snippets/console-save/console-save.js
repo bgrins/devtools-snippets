@@ -1,11 +1,13 @@
 (function(console){
 
-    console.save = function(filename, data){
+    console.save = function(data, filename){
 
         if(!data) {
             console.error('Console.save: No data')
             return;
         }
+
+        if(!filename) filename = 'console.json'
 
         if(typeof data === "object"){
             data = JSON.stringify(data)
