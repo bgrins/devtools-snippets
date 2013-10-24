@@ -26,7 +26,7 @@ task :build do
         krammed = krammed.gsub(/<h3.*<\/h3>/, new_heading);
         krammed = krammed.gsub(/\"#{file}/, "\"#{folder}#{file}");
         krammed = "<div class='snippet'>" + krammed + "</div>";
-        markup = markup + "<div id='" + file + "'>" + krammed + pretty_code + "</div>"
+        markup = markup + "<div class='snippet-wrapper' id='" + file + "'>" + krammed + pretty_code + "</div>"
     end
 
     File.open("index.html", "w") do |io|
