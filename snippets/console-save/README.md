@@ -11,3 +11,5 @@ Data can be a string or just an object, objects are passed through `json.stringi
 #### Licence
 
 MIT
+
+[![console.save](console-save.png)](console-save.js)
