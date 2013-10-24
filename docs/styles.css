@@ -27,6 +27,24 @@ body {
   padding-bottom: 0;
 }
 
+.links ul {
+  margin: 0;
+  margin-top: 4px;
+  padding: 0;
+  list-style: none;
+}
+.links li {
+  display: inline-block;
+  background: #33e;
+  color: white;
+  padding: 3px 5px;
+  margin: 2px;
+  border-radius: 5px;
+}
+.links li a {
+  display: block;
+  color: #eee;
+}
 .content {
   background: #DEDEDE;
   padding: 10px;
