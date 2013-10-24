@@ -50,6 +50,11 @@ body {
   padding: 10px;
 }
 
+.snippet-wrapper {
+  margin: 10px 0;
+  border-bottom: solid 1px;
+}
+
 .content a[id] {
   font-weight: bold;
 }
