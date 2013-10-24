@@ -128,6 +128,46 @@
   <span class="p">}</span>
 <span class="p">})();</span>
 </pre></div>
+</div><div id='console-save'><div class='snippet'><h3><a href='https://github.com/bgrins/devtools-snippets/tree/master/snippets/console-save/console-save.js'>console-save.js</a> <a href='#console-save'>#</a> &nbsp; <small style='float:right'><a href='snippets/console-save/console-save.js'>(view raw)</a></small></h3>
+
+<p>A simple way to save objects as .json fle from the console, includes a chrome extension along with a plain script.</p>
+
+<h4 id="usage">Usage</h4>
+
+<p><code>console.save(data, [filename])</code></p>
+
+<p>Data can be a string or just an object, objects are passed through <code>json.stringify()</code> before writing to file. Filename is optional, defaults to ‘console.json’.</p>
+
+<h4 id="licence">Licence</h4>
+
+<p>MIT</p>
+</div><div class="highlight"><pre><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">console</span><span class="p">){</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">save</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">filename</span><span class="p">){</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Console.save: No data&#39;</span><span class="p">)</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">filename</span><span class="p">)</span> <span class="nx">filename</span> <span class="o">=</span> <span class="s1">&#39;console.json&#39;</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">data</span> <span class="o">===</span> <span class="s2">&quot;object&quot;</span><span class="p">){</span>
+            <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="kd">var</span> <span class="nx">blob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="nx">data</span><span class="p">],</span> <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text/json&#39;</span><span class="p">}),</span>
+            <span class="nx">e</span>    <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createEvent</span><span class="p">(</span><span class="s1">&#39;MouseEvents&#39;</span><span class="p">),</span>
+            <span class="nx">a</span>    <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+
+        <span class="nx">a</span><span class="p">.</span><span class="nx">download</span> <span class="o">=</span> <span class="nx">filename</span>
+        <span class="nx">a</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">blob</span><span class="p">)</span>
+        <span class="nx">a</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">downloadurl</span> <span class="o">=</span>  <span class="p">[</span><span class="s1">&#39;text/json&#39;</span><span class="p">,</span> <span class="nx">a</span><span class="p">.</span><span class="nx">download</span><span class="p">,</span> <span class="nx">a</span><span class="p">.</span><span class="nx">href</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">initMouseEvent</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="nb">window</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
+        <span class="nx">a</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">})(</span><span class="nx">console</span><span class="p">)</span>
+</pre></div>
 </div><div id='cssprettifier'><div class='snippet'><h3><a href='https://github.com/bgrins/devtools-snippets/tree/master/snippets/cssprettifier/cssprettifier.js'>cssprettifier.js</a> <a href='#cssprettifier'>#</a> &nbsp; <small style='float:right'><a href='snippets/cssprettifier/cssprettifier.js'>(view raw)</a></small></h3>
 
 <p>Script for unminifying and prettifying a CSS file written by <a href="http://addyosmani.com">addyosmani</a> and <a href="http://sindresorhus.com">sindresorhus</a>. View the <a href="https://github.com/addyosmani/cssprettifier-bookmarklet">cssprettifier-bookmarklet project on github</a>.</p>
