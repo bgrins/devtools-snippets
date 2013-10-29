@@ -6,7 +6,7 @@
         var alertAndWarn = function(message) {
             window.alert(message + "\nSee JavaScript console the complete log of warnings");
             console.warn(message);
-        
+
         }
         var div = document.createElement('div');
         div.innerText = location.origin + " has " + localStorage.length + " items in localStorage.";
@@ -28,16 +28,16 @@
         w.document.body.appendChild(document.createElement('div').appendChild(div).parentElement);
         div.appendChild(document.createElement('hr'));
         if (location.origin === "chrome-devtools://devtools") {
-        var importSnippets = document.createElement('input');
-        importSnippets.type = 'file';
-        importSnippets.multiple = true;
-        importSnippets.setAttribute('style', 'border: 0.2em dashed silver');
-        var exportButton = document.createElement('input');
-        exportButton.type = 'button';
+            var importSnippets = document.createElement('input');
+            importSnippets.type = 'file';
+            importSnippets.multiple = true;
+            importSnippets.setAttribute('style', 'border: 0.2em dashed silver');
+            var exportButton = document.createElement('input');
+            exportButton.type = 'button';
             var snippets = JSON.parse(localStorage.scriptSnippets);
-        exportButton.value = 'Export All '+ snippets.length +' Snippets';
-        
-//             div.appendChild(document.createElement('div').appendChild(document.createTextNode('Set Google Chrome to ask for download location to avaid malware warning')).parentElement);
+            exportButton.value = 'Export All ' + snippets.length + ' Snippets';
+
+            //             div.appendChild(document.createElement('div').appendChild(document.createTextNode('Set Google Chrome to ask for download location to avaid malware warning')).parentElement);
             var aa = document.createElement('div');
             aa.innerHTML = 'Set Google Chrome to <a href="chrome://settings/search#download">ask for download location</a> to avoid malware warning';
             div.appendChild(aa);
@@ -47,15 +47,14 @@
             div.appendChild(document.createElement('div').appendChild(exportButton).parentElement);
             div.appendChild(document.createElement('div').appendChild(document.createTextNode('Export Snippets Individually')).parentElement);
             snippets.forEach(function(snippet) {
-                var blob = new window.Blob(['// snippet ' + snippet.name + ' exported by snippeteer from\n// ' 
-                    + navigator.userAgent + '\n// at ' + (new Date()).toJSON() + '\n' + snippet.content], {
+                var blob = new window.Blob(['// snippet ' + snippet.name + ' exported by snippeteer from\n// ' + navigator.userAgent + '\n// at ' + (new Date()).toJSON() + '\n' + snippet.content], {
                     'type': 'text/utf-8'
                 });
                 var a = document.createElement('a');
                 a.href = URL.createObjectURL(blob);
-//                 a.download = snippet.name.replace(/\.js$/, '.snippet');
+                //                 a.download = snippet.name.replace(/\.js$/, '.snippet');
                 a.download = snippet.name;
-//                 a.title = 'Saving as ' + a.download + ' to avoid Google Chrome malware warning'
+                //                 a.title = 'Saving as ' + a.download + ' to avoid Google Chrome malware warning'
                 a.innerText = snippet.name;
                 var aDiv = document.createElement('div');
                 div.appendChild(aDiv);
@@ -111,6 +110,7 @@
                     }
                 }
             }, false);
+
             function errorHandler(domError) {
                 alertAndWarn(domError);
             }
