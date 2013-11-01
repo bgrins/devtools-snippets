@@ -1,15 +1,21 @@
-// snippet devtools_import_export.js exported by snippeteer from
-// Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1687.2 Safari/537.36
-// at 2013-11-01T10:14:46.899Z
-// snippet devtools_import_export.js exported by snippeteer from
-// Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1685.0 Safari/537.36
-// at 2013-10-29T19:42:34.721Z
-// snippet devtools_import_export.js exported by snippeteer from
-// Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36
-// at 2013-10-29T19:25:35.298Z
-// snippet devtools_import_export.js exported by snippeteer from
-// Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1684.0 Safari/537.36
-// at 2013-10-29T00:31:54.370Z
+//
+// DevTools Import/Export Snippet for Google Chrome
+//
+// Source: https://raw.github.com/anaran/devtools-snippets/master/snippets/devtools_import_export.js
+//
+// Documentation: http://bgrins.github.io/devtools-snippets/#devtools_import_export
+//
+// Features
+//
+//  Export Chrome Developer Tools information to JSON
+//      Source Snippets
+//      Command History
+//      localStorage
+//
+//  Import Source Snippets (from .js or JSON export) into Chrome Developer Tools
+//
+//  Export localStorage of websites to JSON
+//
 (function() {
     try {
         function downloadConsoleHistory() {
