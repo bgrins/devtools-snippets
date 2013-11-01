@@ -248,16 +248,18 @@
                 deleteButton.type = 'button';
                 deleteButton.value = 'Delete All Snippets';
                 deleteButton.addEventListener('click', function(event) {
-                    exportButton.click();
-                    p = WebInspector.scriptSnippetModel.project();
-                    var paths = p.uiSourceCodes().map(function(sc) {
-                        return sc.path();
-                    });
-                    paths.forEach(function(path) {
-                        p.deleteFile(path);
-                        console.log("snippet " + path + " has been deleted.");
-                    });
-                    p.refresh();
+                    localStorageDownloadButton.click();
+                    if (window.confirm("I have verified localStorage download completed successfully and would like to delete all snippets from Chrome now.\n\n(This cannot be undone when localStorage data has not been downloaded.)")) {
+                        p = WebInspector.scriptSnippetModel.project();
+                        var paths = p.uiSourceCodes().map(function(sc) {
+                            return sc.path();
+                        });
+                        paths.forEach(function(path) {
+                            p.deleteFile(path);
+                            console.log("snippet " + path + " has been deleted.");
+                        });
+                        p.refresh();
+                    }
                 }, false);
                 div.appendChild(document.createElement('div').appendChild(deleteButton).parentElement);
                 var snippetLinks = document.createElement('div');
