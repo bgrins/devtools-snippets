@@ -170,7 +170,7 @@
             wa.document.body.appendChild(confirmerDivPopup);
         } else {
             document.body.appendChild(confirmerDiv);
-            window.alert("    To inspect localStorage of\n    " + location.origin + '\n\nOpen ' + title + '\n\n    To import/export devtools source snippets:\n\n1. Cancel\n2. Undock Chrome Developer Tools into separate window\n3. Press Ctrl+Shift+I to inspect it.\n4. Run this snippet from there.');
+            window.alert("To inspect localStorage of\n" + location.origin + '\n\n* Open ' + title + '\n\nTo import/export devtools source snippets:\n\n* Cancel\n* Undock Developer Tools into separate window\n* Press Ctrl+Shift+I to inspect it.\n* Run this snippet from there.');
         }
         var removeConfirmer = function(confirmerDiv) {
             document.body.removeChild(confirmerDiv);
@@ -251,13 +251,24 @@
                     localStorageDownloadButton.click();
                     if (window.confirm("I have verified localStorage download completed successfully and would like to delete all snippets from Chrome now.\n\n(This cannot be undone when localStorage data has not been downloaded.)")) {
                         p = WebInspector.scriptSnippetModel.project();
-                        var paths = p.uiSourceCodes().map(function(sc) {
-                            return sc.path();
-                        });
-                        paths.forEach(function(path) {
-                            p.deleteFile(path);
-                            console.log("snippet " + path + " has been deleted.");
-                        });
+                        var scs = p.uiSourceCodes();
+                        // TODO Please note Chrome 30 deleteFile takes a uiSourceCode argument.
+                        if (p.deleteFile.toString().match(/function\s*\(uiSourceCode\)/)) {
+                            // TODO Please note Chrome 30 misses entries when counting up.
+                            for (var i = scs.length - 1; i >= 0; i--) {
+                                console.log("deleting snippet " + scs[i].path());
+                                p.deleteFile(scs[i]);
+                            }
+                        } else {
+                            // TODO Please note Chrome 32 deleteFile takes a path argument.
+                            var paths = scs.map(function(sc) {
+                                return sc.path();
+                            });
+                            paths.forEach(function(path) {
+                                p.deleteFile(path);
+                                console.log("snippet " + path + " has been deleted.");
+                            });
+                        }
                         p.refresh();
                     }
                 }, false);
