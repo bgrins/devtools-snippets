@@ -1,4 +1,7 @@
 // snippet devtools_import_export.js exported by snippeteer from
+// Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1687.2 Safari/537.36
+// at 2013-11-01T10:14:46.899Z
+// snippet devtools_import_export.js exported by snippeteer from
 // Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1685.0 Safari/537.36
 // at 2013-10-29T19:42:34.721Z
 // snippet devtools_import_export.js exported by snippeteer from
@@ -131,10 +134,10 @@
             console.error(message);
         }
         var div = document.createElement('div');
-        div.innerText = location.origin + " has " + localStorage.length + " items in localStorage.";
+        div.innerText = "Inspecting " + location.origin;
         var localStorageDownloadButton = document.createElement('input');
         localStorageDownloadButton.type = 'button';
-        localStorageDownloadButton.value = 'Export localStorage';
+        localStorageDownloadButton.value = 'Export All localStorage Entries';
         localStorageDownloadButton.addEventListener('click', function(event) {
             var localStorageBlob = new window.Blob([JSON.stringify(localStorage, null, 4)], {
                 'type': 'text/utf-8'
@@ -166,13 +169,8 @@
             confirmerDivPopup.appendChild(document.createElement('div').appendChild(aNo).parentElement);
             wa.document.body.appendChild(confirmerDivPopup);
         } else {
-            //             if (document.hasFocus()) {
             document.body.appendChild(confirmerDiv);
-            //                 div.appendChild(document.createTextNode('To import/export devtools source snippets:\nUndock Developer tools into separate window\nand press Ctrl+Shift+I to inspect it.\nThen run this snippet from there.'));
-            window.alert('To import/export devtools source snippets:\nUndock Developer tools into separate window\nand press Ctrl+Shift+I to inspect it.\nThen run this snippet from there.');
-            //             } else {
-            //                 alertAndWarn("Select tab for " + location.href);
-            //             }
+            window.alert("    To inspect localStorage of\n    " + location.origin + '\n\nOpen ' + title + '\n\n    To import/export devtools source snippets:\n\n1. Cancel\n2. Undock Chrome Developer Tools into separate window\n3. Press Ctrl+Shift+I to inspect it.\n4. Run this snippet from there.');
         }
         var removeConfirmer = function(confirmerDiv) {
             document.body.removeChild(confirmerDiv);
@@ -196,27 +194,21 @@
         }, false);
         var devtoolsImportExport = function() {
             var w = window.open("", "");
-            //             try {
-            //                 window.open("chrome://settings/search#download");
-            //             } catch (exception) {
-            //                 alertAndWarn(exception.stack);
-            //             }
-            //             var w = window.open("", "dtie_dt");
-            //             var w = window.open("", "_blank", "width=400,height=500,top=100,left=100");
             w.document.title = title;
             w.document.body.appendChild(document.createElement('div').appendChild(div).parentElement);
-            div.appendChild(document.createElement('hr'));
-            //            settings.location.href = "chrome://extensions";
             if (location.origin === "chrome-devtools://devtools") {
+                div.appendChild(document.createElement('hr'));
                 if (localStorage.consoleHistory) {
                     var aHistory = document.createElement('a');
                     aHistory.href = '';
-                    aHistory.target = 'dtie_ch';
-                    aHistory.innerText = 'devtools console history';
+                    aHistory.target = 'dtie_cch';
+                    aHistory.innerText = 'Console Command History';
                     var aHistoryDiv = document.createElement('div');
                     div.appendChild(aHistoryDiv);
+                    var aHistoryText = document.createTextNode('Show All Entries ');
+                    aHistoryDiv.appendChild(aHistoryText);
                     aHistoryDiv.appendChild(aHistory);
-                    aHistoryDiv.addEventListener('click', function(event) {
+                    aHistory.addEventListener('click', function(event) {
                         event.preventDefault();
                         downloadConsoleHistory();
                     }, false);
@@ -226,40 +218,51 @@
                 importSnippets.type = 'file';
                 importSnippets.multiple = true;
                 importSnippets.setAttribute('style', 'border: 0.2em dashed silver');
-                var exportButton = document.createElement('input');
-                exportButton.type = 'button';
-                var snippets = JSON.parse(localStorage.scriptSnippets);
-                exportButton.value = 'Export All ' + snippets.length + ' Snippets';
-
-                //             div.appendChild(document.createElement('div').appendChild(document.createTextNode('Set Google Chrome to ask for download location to avaid malware warning')).parentElement);
-                div.appendChild(document.createElement('div').appendChild(document.createTextNode('Import Snippets')).parentElement);
+                div.appendChild(document.createElement('div').appendChild(document.createTextNode('Import Snippets individually or from exported localStorage.')).parentElement);
                 div.appendChild(importSnippets);
                 div.appendChild(document.createElement('hr'));
-                div.appendChild(document.createElement('div').appendChild(exportButton).parentElement);
-                var aa = document.createElement('div');
-                aa.innerHTML = 'Set Google Chrome to ask for download location (visit <a href="chrome://settings/search#download">chrome://settings/search#download</a>) to avoid malware warning';
-                div.appendChild(aa);
-                div.appendChild(document.createElement('div').appendChild(document.createTextNode('Export Snippets Individually')).parentElement);
-                snippets.forEach(function(snippet) {
-                    var blob = new window.Blob(['// snippet ' + snippet.name + ' exported by snippeteer from\n// ' + navigator.userAgent + '\n// at ' + (new Date()).toJSON() + '\n' + snippet.content], {
-                        'type': 'text/utf-8'
-                    });
-                    var a = document.createElement('a');
-                    a.href = URL.createObjectURL(blob);
-                    //                 a.download = snippet.name.replace(/\.js$/, '.snippet');
-                    a.download = snippet.name;
-                    //                 a.title = 'Saving as ' + a.download + ' to avoid Google Chrome malware warning'
-                    a.innerText = snippet.name;
-                    var aDiv = document.createElement('div');
-                    div.appendChild(aDiv);
-                    aDiv.appendChild(a);
-                });
+                var aDownloadAsk = document.createElement('a');
+                aDownloadAsk.href = 'https://support.google.com/chrome/answer/95574';
+                aDownloadAsk.target = 'dtie_afd';
+                aDownloadAsk.innerText = 'ask for download location';
+                var aDownloadAskDiv = document.createElement('div');
+                div.appendChild(aDownloadAskDiv);
+                aDownloadAskDiv.appendChild(document.createTextNode('Set Google Chrome to '));
+                aDownloadAskDiv.appendChild(aDownloadAsk);
+                aDownloadAskDiv.appendChild(document.createTextNode(' to avoid malware warning (still requires confirming each download).'));
+                aDownloadAskDiv.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    window.open(aDownloadAsk.href, aDownloadAsk.target);
+                }, false);
+                var exportButton = document.createElement('input');
+                exportButton.type = 'button';
+                exportButton.value = 'Export All Snippets';
                 exportButton.addEventListener('click', function(event) {
                     var aNodeList = w.document.querySelectorAll('a[download]');
                     for (var i = 0, len = aNodeList.length; i < len; i++) {
                         aNodeList[i].click();
                     }
                 }, false);
+                div.appendChild(document.createElement('div').appendChild(exportButton).parentElement);
+                var deleteButton = document.createElement('input');
+                deleteButton.type = 'button';
+                deleteButton.value = 'Delete All Snippets';
+                deleteButton.addEventListener('click', function(event) {
+                    exportButton.click();
+                    p = WebInspector.scriptSnippetModel.project();
+                    var paths = p.uiSourceCodes().map(function(sc) {
+                        return sc.path();
+                    });
+                    paths.forEach(function(path) {
+                        p.deleteFile(path);
+                        console.log("snippet " + path + " has been deleted.");
+                    });
+                    p.refresh();
+                }, false);
+                div.appendChild(document.createElement('div').appendChild(deleteButton).parentElement);
+                var snippetLinks = document.createElement('div');
+                div.appendChild(document.createElement('div').appendChild(document.createTextNode('Export Snippets Individually')).parentElement);
+                div.appendChild(snippetLinks);
                 var checkFileCount = function(files) {
                     if (files.length === 0) {
                         alertAndWarn('Please pick some .js files for import as google chrome devtools snippets.');
@@ -268,48 +271,60 @@
                         return true;
                     }
                 };
-                var readFileUpdateUI = function(file) {
+
+                function createSnippet(fileName, result, review) {
+                    if (review) {
+                        var w = window.open("", "", "width=" + window.screen.availWidth / 2 + ",height=" + window.screen.availHeight / 2 + ",top=100,left=100");
+                        w.document.title = 'Snippet ' + fileName;
+                        var pre = document.createElement('pre');
+                        pre.innerText = result;
+                        w.document.body.appendChild(pre);
+                    }
+                    p = WebInspector.scriptSnippetModel.project();
+                    if (p.createFile.length === 4) {
+                        p.createFile(fileName, fileName, result, function(filePath) {
+                            p.rename(p._uiSourceCodesMap[filePath].uiSourceCode, fileName.replace(/\.snippet$/, '.js'), function(success) {
+                                if (!success) {
+                                    alertAndWarn('failed to rename ' + filePath + ' to ' + fileName);
+                                }
+                            });
+                        });
+                    } else if (p.createFile.length === 3) {
+                        p.createFile(fileName, fileName, function(filePath) {
+                            p.setFileContent(p._uiSourceCodesMap[filePath].uiSourceCode, result, function(what) {
+                                console.log('setFileContent callback argument what:', what);
+                            });
+                            p.rename(p._uiSourceCodesMap[filePath].uiSourceCode, fileName.replace(/\.snippet$/, '.js'), function(success) {
+                                if (!success) {
+                                    alertAndWarn('failed to rename ' + filePath + ' to ' + fileName);
+                                }
+                            });
+                        });
+                    } else {
+                        alertAndError("Cannot handle p.createFile with " + p.createFile.length + " arguments");
+                    }
+                }
+
+                function readFileUpdateUI(file) {
                     var reader = new FileReader();
                     var filesLoaded = 0;
                     reader.onerror = errorHandler;
                     reader.onload = function(readEvent) {
                         filesLoaded++;
-                        var w = window.open("", "", "width=" + window.screen.availWidth / 2 + ",height=" + window.screen.availHeight / 2 + ",top=100,left=100");
-                        w.document.title = 'Snippet ' + file.name;
                         console.timeEnd('read of ' + file.name);
                         var result = readEvent.target.result;
-                        var pre = document.createElement('pre');
-                        pre.innerText = result;
-                        w.document.body.appendChild(pre);
-                        p = WebInspector.scriptSnippetModel.project();
-                        if (p.createFile.length === 4) {
-                            p.createFile(file.name, file.name, result, function(filePath) {
-                                p.rename(p._uiSourceCodesMap[filePath].uiSourceCode, file.name.replace(/\.snippet$/, '.js'), function(success) {
-                                    if (!success) {
-                                        alertAndWarn('failed to rename ' + filePath + ' to ' + file.name);
-                                    }
-                                });
+                        try {
+                            var scriptSnippets = JSON.parse(JSON.parse(result).scriptSnippets);
+                            scriptSnippets.forEach(function(snippet) {
+                                createSnippet(snippet.name, snippet.content, true && "review");
                             });
-                            p.refresh();
-                        } else if (p.createFile.length === 3) {
-                            p.createFile(file.name, file.name, function(filePath) {
-                                p.setFileContent(p._uiSourceCodesMap[filePath].uiSourceCode, result, function(what) {
-                                    console.log('setFileContent callback argument what:', what);
-                                });
-                                p.rename(p._uiSourceCodesMap[filePath].uiSourceCode, file.name.replace(/\.snippet$/, '.js'), function(success) {
-                                    if (!success) {
-                                        alertAndWarn('failed to rename ' + filePath + ' to ' + file.name);
-                                    }
-                                });
-                            });
-                            p.refresh();
-                        } else {
-                            alertAndError("Cannot handle p.createFile with " + p.createFile.length + " arguments");
+                        } catch (exception) {
+                            createSnippet(file.name, result, true && "review");
                         }
                     };
                     console.time('read of ' + file.name);
                     reader.readAsText(file);
-                };
+                }
                 importSnippets.addEventListener('change', function(event) {
                     console.log(event.target.files);
                     if (checkFileCount(event.target.files)) {
@@ -319,6 +334,7 @@
                             readFileUpdateUI(event.target.files[i]);
                         }
                     }
+                    WebInspector.scriptSnippetModel.project().refresh();
                 }, false);
 
                 function errorHandler(domError) {
@@ -360,11 +376,31 @@
                     }
                 }, false && "useCapture"); //$NON-NLS-0$ //$NON-NLS-1$
             }
-            //             else {
-            //                 div.appendChild(document.createTextNode('Undock Developer tools into separate window and press Ctrl+Shift+I to inspect it. Then run snipetter from there to import/export snippets.'));
-            //             }
+            window.setInterval(function() {
+                localStorageDownloadButton.value = 'Export All ' + localStorage.length + ' localStorage Entries';
+                if (location.origin === "chrome-devtools://devtools") {
+                    var nds = snippetLinks.querySelectorAll('div');
+                    for (var i = 0, len = nds.length; i < len; i++) {
+                        snippetLinks.removeChild(nds[i]);
+                    }
+                    var snippets = JSON.parse(localStorage.scriptSnippets);
+                    snippets.forEach(function(snippet) {
+                        var blob = new window.Blob(['// snippet ' + snippet.name + ' exported by snippeteer from\n// ' + navigator.userAgent + '\n// at ' + (new Date()).toJSON() + '\n' + snippet.content], {
+                            'type': 'text/utf-8'
+                        });
+                        var a = document.createElement('a');
+                        a.href = URL.createObjectURL(blob);
+                        a.download = snippet.name;
+                        a.innerText = snippet.name;
+                        snippetLinks.appendChild(document.createElement('div').appendChild(a).parentElement);
+                    });
+                    var snippets = JSON.parse(localStorage.scriptSnippets);
+                    aHistoryText.textContent = 'Show All ' + JSON.parse(localStorage.consoleHistory).length + ' Entries ';
+                    deleteButton.value = 'Delete All ' + snippets.length + ' Snippets';
+                    exportButton.value = 'Export All ' + snippets.length + ' Snippets';
+                }
+            }, 3000);
         }
-        //         aYes.click();
     } catch (exception) {
         alertAndWarn(exception.stack.replace(/:(\d+):(\d+)/g, "$& (Line $1, Column $2)"));
     }
