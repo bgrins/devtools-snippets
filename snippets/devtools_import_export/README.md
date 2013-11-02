@@ -32,7 +32,7 @@ Implementation by [anaran](https://github.com/anaran).
 
 [end](#step-13) [forward](#step-2)
 
-Open Source Tab with Ctrl+Shift+I and Ctrl+3
+Open Source Tab with `Ctrl+Shift+I` and `Ctrl+3`
 
 ![][dtie01]
 
@@ -80,7 +80,7 @@ Click the "Export All n localStorage Entries" if you like
 
 [back](#step-6) [forward](#step-8)
 
-Undock devtools into separate window, press Ctrl+Shift+I Ctrl+3 and select "Script snipper #109" and Run it
+Undock devtools into separate window, press `Ctrl+Shift+I` `Ctrl+3` and select "Script snipper #109" and Run it
 
 ![][dtie07]
 
@@ -88,7 +88,7 @@ Undock devtools into separate window, press Ctrl+Shift+I Ctrl+3 and select "Scri
 
 [back](#step-7) [forward](#step-9)
 
-A new tab, "DevTools Import/Export", opens. In addition to localStorage it also shows information about available console command history and snippets. Click "Import Snippets" and pick a previously save export of localStorage.
+A new tab, "DevTools Import/Export", opens. In addition to localStorage it also shows information about available console command history and snippets. Click "Import Snippets" and pick a previously saved export of localStorage.
 
 ![][dtie08]
 
@@ -136,10 +136,10 @@ Click "Delete All n Snippets" which will ask you for confirmation you have acual
 [dtie01]: dtie01.png "We start out with no snippets installed, devtools docked to main window"
 [dtie02]: dtie02.png "We still see no sources displayed"
 [dtie03]: dtie03.png "The Source tab now displays the empty content of the new snippet, 'Script snipper #109'"
-[dtie04]: dtie04.png "Open https://raw.github.com/anaran/devtools-snippets/master/snippets/devtools_import_export.js an chrome, copy and paste the contents to the snippet Source tab. Then type Ctrl+Enter or the |> button to 'Run snippet'"
+[dtie04]: dtie04.png "Open https://raw.github.com/anaran/devtools-snippets/master/snippets/devtools_import_export.js an chrome, copy and paste the contents to the snippet Source tab. Then press Ctrl+Enter or the |> button to 'Run snippet'"
 [dtie05]: dtie05.png "A popup informs us of the two major use cases: 1. inspect the webpage, 2. import/export of devtools data (snippets, command history, localStorage)"
 [dtie06]: dtie06.png "This is a handy way to save and inspect data saved in localStorage of the visited website."
-[dtie07]: dtie07.png "The popup indicated we are about to inspect devtools information not specific to any website."
+[dtie07]: dtie07.png "The popup indicates we are about to inspect devtools information not specific to any website."
 [dtie08]: dtie08.png "First you will have to click 'Export All n localStorage Entries' so that you can import something."
 [dtie09]: dtie09.png "The relevant section of data from the saved localStorage will be used to import snippets. Alternatively you can also pick individual JavaScript files to import them as snippets. Any other files would import too, but might not be very useful."
 [dtie10]: dtie10.png "Individual snippet files may also be downloaded now. Take note of the download settings advice. User confirmation is necessary for downloads of files with the .js extension."
