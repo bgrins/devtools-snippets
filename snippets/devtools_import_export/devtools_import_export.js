@@ -1,7 +1,7 @@
 //
 // DevTools Import/Export Snippet for Google Chrome
 //
-// Source: https://raw.github.com/anaran/devtools-snippets/master/snippets/devtools_import_export.js
+// Source: https://raw.github.com/anaran/devtools-snippets/master/snippets/devtools_import_export/devtools_import_export.js
 //
 // Documentation: http://bgrins.github.io/devtools-snippets/#devtools_import_export
 //
