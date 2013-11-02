@@ -22,64 +22,116 @@
 
 Implementation by [anaran](https://github.com/anaran).
 
-[Typical Use Cases](#typical-use-cases)
+[Typical Use Cases](#step-1)
 
 [![devtools_import_export](devtools_import_export.gif)](devtools_import_export.js)
 
 ## Typical Use Cases
 
-### dtie01
+### Step 1
+
+[back](step-13) [forward](step-2)
+
 Open Source Tab with Ctrl+Shift+I and Ctrl+3
-[back](#dtie13) [forward](#dtie02)
+
 ![][dtie01]
-### dtie02
+
+### Step 2
+
+[back](step-1) [forward](step-3)
+
 Add New snippet with Snippets tab context menu
-[back](#dtie01) [forward](#dtie03)
+
 ![][dtie02]
-### dtie03
+
+### Step 3
+
+[back](step-2) [forward](step-4)
+
 Accept the automatically generated snippet name
-[back](#dtie02) [forward](#dtie04)
+
 ![][dtie03]
-### dtie04
+
+### Step 4
+
+[back](step-3) [forward](step-5)
+
 Copy raw contents of the devtools_import_export.js snippet
-[back](#dtie03) [forward](#dtie05)
+
 ![][dtie04]
-### dtie05
+
+### Step 5
+
+[back](step-4) [forward](step-6)
+
 Choose to inspect the current webpage by clicking the "Open DevTools Import/Export" link
-[back](#dtie04) [forward](#dtie06)
+
 ![][dtie05]
-### dtie06
+
+### Step 6
+
+[back](step-5) [forward](step-7)
+
 Click the "Export All n localStorage Entries" if you like
-[back](#dtie05) [forward](#dtie07)
+
 ![][dtie06]
-### dtie07
+
+### Step 7
+
+[back](step-6) [forward](step-8)
+
 Undock devtools into separate window, press Ctrl+Shift+I Ctrl+3 and select "Script snipper #109" and Run it
-[back](#dtie06) [forward](#dtie08)
+
 ![][dtie07]
-### dtie08
+
+### Step 8
+
+[back](step-7) [forward](step-9)
+
 A new tab, "DevTools Import/Export", opens. In addition to localStorage it also shows information about available console command history and snippets. Click "Import Snippets" and pick a previously save export of localStorage.
-[back](#dtie07) [forward](#dtie09)
+
 ![][dtie08]
-### dtie09
+
+### Step 9
+
+[back](step-8) [forward](step-10)
+
 Pick a file from your downloads folder, named similar to, e.g. "localStorage_2013-11-01T130645.378Z.txt"
-[back](#dtie08) [forward](#dtie10)
+
 ![][dtie09]
-### dtie10
+
+### Step 10
+
+[back](step-9) [forward](step-11)
+
 "DevTools Import/Export" updates within 3 seconds to reflect the newly imported snippets available for export now.
-[back](#dtie09) [forward](#dtie11)
+
 ![][dtie10]
-### dtie11
+
+### Step 11
+
+[back](step-10) [forward](step-12)
+
 Click "Show All n Entries Console Command History" to see the last commands you used in the console for debugging.
-[back](#dtie10) [forward](#dtie12)
+
 ![][dtie11]
-### dtie12
+
+### Step 12
+
+[back](step-11) [forward](step-13)
+
 Click "Delete All n Snippets" which will ask you for confirmation you have acually verified the successful backup export of localStorage data containing snippets source code, among other information.
-[back](#dtie11) [forward](#dtie13)
+
 ![][dtie12]
-### dtie13
+
+### Step 13
+
+[back](step-12) [forward](step-1)
+
 "DevTools Import/Export" updates within 3 seconds to confirm all snippets have been deleted, including the copy of devtools_import_export.js
-[back](#dtie12) [forward](#dtie01)
+
 ![][dtie13]
+
 
 [dtie01]: dtie01.png "We start out with no snippets installed, devtools docked to main window"
 [dtie02]: dtie02.png "We still see no sources displayed"
