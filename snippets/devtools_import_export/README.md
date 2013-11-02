@@ -22,8 +22,8 @@
 
 Implementation by [anaran](https://github.com/anaran).
 
-[back][dtie13] [forward][dtie02]
-![Open Source Tab with Ctrl+Shift+I and Ctrl+3][dtie01]
+![back][dtie13] ![forward][dtie02]
+![![Open Source Tab with Ctrl+Shift+I and Ctrl+3][dtie01]][dtie02]
 [back][dtie01] [forward][dtie03]
 ![Add New snippet with Snippets tab context menu][dtie02]
 [back][dtie02] [forward][dtie04]
