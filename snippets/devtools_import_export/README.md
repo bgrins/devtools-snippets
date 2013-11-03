@@ -28,9 +28,16 @@ Implementation by [anaran](https://github.com/anaran).
 
 ## Typical Use Cases
 
+* [Get devtools_import_export installed](#step-1)
+* [Run devtools_import_export Snippet](#step-4)
+* [Export website localStorage](#step-6)
+* [Import Snippets indo Developer Tools](#step-7)
+* [Show/Download Developer Tools Console Command History](#step-11)
+* [Delete All Developer Tools Snippets](#step-12)
+
 ### Step 1
 
-[end](#step-13) [forward](#step-2)
+[end](#step-13) [forward](#step-2) [overview](#typical-use-cases)
 
 Open Source Tab with `Ctrl+Shift+I` and `Ctrl+3`
 
@@ -38,7 +45,7 @@ Open Source Tab with `Ctrl+Shift+I` and `Ctrl+3`
 
 ### Step 2
 
-[back](#step-1) [forward](#step-3)
+[back](#step-1) [forward](#step-3) [overview](#typical-use-cases)
 
 Add New snippet with Snippets tab context menu
 
@@ -46,7 +53,7 @@ Add New snippet with Snippets tab context menu
 
 ### Step 3
 
-[back](#step-2) [forward](#step-4)
+[back](#step-2) [forward](#step-4) [overview](#typical-use-cases)
 
 Accept the automatically generated snippet name
 
@@ -54,7 +61,7 @@ Accept the automatically generated snippet name
 
 ### Step 4
 
-[back](#step-3) [forward](#step-5)
+[back](#step-3) [forward](#step-5) [overview](#typical-use-cases)
 
 Copy raw contents of the devtools_import_export.js snippet
 
@@ -62,7 +69,7 @@ Copy raw contents of the devtools_import_export.js snippet
 
 ### Step 5
 
-[back](#step-4) [forward](#step-6)
+[back](#step-4) [forward](#step-6) [overview](#typical-use-cases)
 
 Choose to inspect the current webpage by clicking the "Open DevTools Import/Export" link
 
@@ -70,7 +77,7 @@ Choose to inspect the current webpage by clicking the "Open DevTools Import/Expo
 
 ### Step 6
 
-[back](#step-5) [forward](#step-7)
+[back](#step-5) [forward](#step-7) [overview](#typical-use-cases)
 
 Click the "Export All n localStorage Entries" if you like
 
@@ -78,7 +85,7 @@ Click the "Export All n localStorage Entries" if you like
 
 ### Step 7
 
-[back](#step-6) [forward](#step-8)
+[back](#step-6) [forward](#step-8) [overview](#typical-use-cases)
 
 Undock devtools into separate window, press `Ctrl+Shift+I` `Ctrl+3` and select "Script snipper #109" and Run it
 
@@ -86,7 +93,7 @@ Undock devtools into separate window, press `Ctrl+Shift+I` `Ctrl+3` and select "
 
 ### Step 8
 
-[back](#step-7) [forward](#step-9)
+[back](#step-7) [forward](#step-9) [overview](#typical-use-cases)
 
 A new tab, "DevTools Import/Export", opens. In addition to localStorage it also shows information about available console command history and snippets. Click "Import Snippets" and pick a previously saved export of localStorage.
 
@@ -94,7 +101,7 @@ A new tab, "DevTools Import/Export", opens. In addition to localStorage it also 
 
 ### Step 9
 
-[back](#step-8) [forward](#step-10)
+[back](#step-8) [forward](#step-10) [overview](#typical-use-cases)
 
 Pick a file from your downloads folder, named similar to, e.g. "localStorage_2013-11-01T130645.378Z.txt"
 
@@ -102,7 +109,7 @@ Pick a file from your downloads folder, named similar to, e.g. "localStorage_201
 
 ### Step 10
 
-[back](#step-9) [forward](#step-11)
+[back](#step-9) [forward](#step-11) [overview](#typical-use-cases)
 
 "DevTools Import/Export" updates within 3 seconds to reflect the newly imported snippets available for export now.
 
@@ -110,7 +117,7 @@ Pick a file from your downloads folder, named similar to, e.g. "localStorage_201
 
 ### Step 11
 
-[back](#step-10) [forward](#step-12)
+[back](#step-10) [forward](#step-12) [overview](#typical-use-cases)
 
 Click "Show All n Entries Console Command History" to see the last commands you used in the console for debugging.
 
@@ -118,9 +125,15 @@ Click "Show All n Entries Console Command History" to see the last commands you 
 
 ### Step 12
 
-[back](#step-11) [forward](#step-13)
+[back](#step-11) [forward](#step-13) [overview](#typical-use-cases)
 
-Click "Delete All n Snippets" which will ask you for confirmation you have acually verified the successful backup export of localStorage data containing snippets source code, among other information.
+Click "Delete All n Snippets".
+
+This will automatically perform `Delete All n locaStorage Entries` for you.
+
+It will then ask you for confirmation you have acually verified the successful backup export of localStorage data containing snippets source code, among other information.
+
+It will finally delete all snippets if you confirm with `OK`. You can still `Cancel` at this point.
 
 ![][dtie12]
 
