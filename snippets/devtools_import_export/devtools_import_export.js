@@ -228,7 +228,7 @@
                 div.appendChild(importSnippets);
                 div.appendChild(document.createElement('hr'));
                 var aDownloadAsk = document.createElement('a');
-                aDownloadAsk.href = 'https://support.google.com/chrome/answer/95574';
+                aDownloadAsk.href = 'https://support.google.com/chrome/answer/95574?hl=' + navigator.language;
                 aDownloadAsk.target = 'dtie_afd';
                 aDownloadAsk.innerText = 'ask for download location';
                 var aDownloadAskDiv = document.createElement('div');
