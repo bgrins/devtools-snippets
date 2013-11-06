@@ -67,7 +67,8 @@ try {
         var i18nNodes = document.querySelectorAll(select + '[i18n-content]');
         for (i = 0, len = i18nNodes.length; i < len; i++) {
             if (i18nNodes[i].hasAttribute('i18n-content') && i18nNodes[i].childElementCount > 0) {
-                console.warn('HTML elements have been added to\n%O\nPlease move text to be localized to elements without HTML markup other than %o!', i18nNodes[i], 'http://dev.w3.org/html5/html-author/charref');
+                console.warn('HTML elements have been added to\n%O\nPlease use only text and named character references (%o)!',
+                i18nNodes[i], 'https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Introduction#Named_character_references');
             }
         }
     };
