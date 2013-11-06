@@ -15,6 +15,27 @@
         '1.8.1  1.8.2  1.8.3  1.9.0   1.9.1  1.10.0 1.10.1 1.10.2 2.0.0  2.0.1   2.0.2  2.0.3'
     ].join('\n').split(/\s+/);
 
+    var oldjQuery = window.jQuery;
+
+    window.resetjQuery = function () {
+        console.group('Resetting jQuery version');
+        if ( !oldjQuery ) {
+            if (window.jQuery) {
+                delete window.jQuery;
+                console.log('all jQuery objects removed from window');
+            }
+
+            console.log('no jQuery in this window');
+        } else {
+            window.jQuery = oldjQuery;
+            var style0 = "font-style: italic; color: #333";
+            var style1 = "font-weight: bold;";
+            console.log('%cOriginal jQuery (version %c%s%c) loaded back into window. Enjoy!', style0, style1, window.jQuery.fn.jquery, style0);
+        }
+
+        console.groupEnd();
+    };
+
     window.loadjQuery = function (version) {
         var LATEST      = '1.10.2',
             ourScriptId = 'jquery-version-devtools-snippet',
@@ -28,7 +49,7 @@
                     : script.src = '//code.jquery.com/jquery-latest.min.js';
 
                 return script;
-            }
+            };
 
         if ( window.jQuery ) {
             if ( window.jQuery.fn.jquery === (version || LATEST) ) {
