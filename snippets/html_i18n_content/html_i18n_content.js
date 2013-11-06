@@ -64,6 +64,12 @@ try {
                 }
             }
         }
+        var i18nNodes = document.querySelectorAll(select + '[i18n-content]');
+        for (i = 0, len = i18nNodes.length; i < len; i++) {
+            if (i18nNodes[i].hasAttribute('i18n-content') && i18nNodes[i].childElementCount > 0) {
+                console.warn('HTML elements have been added to\n%O\nPlease move text to be localized to elements without HTML markup other than %o!', i18nNodes[i], 'http://dev.w3.org/html5/html-author/charref');
+            }
+        }
     };
     i18nForInnerText('*', hsh);
     i18nForValueAttribute('input[value]', hsh);
@@ -99,6 +105,10 @@ try {
         try {
             document.addEventListener('readystatechange', function(event) {
                 if (event.target.readyState !== 'complete') {
+                    return;
+                }
+                if (!chrome.i18n) {
+                    console.warn('chrome.i18n is undefined.\n%s\nis %cnot%c viewed as part of a chrome extension.', document.URL, 'font-weight: bold', '');
                     return;
                 }
                 (function() {
