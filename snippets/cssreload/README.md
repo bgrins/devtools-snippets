@@ -1,5 +1,5 @@
 ### cssreload.js
 
-Removes then reload all the CSS files in the current page.
+Reloads all CSS files on the page.  It does so by adding a random GET parameter onto each stylesheet's `href` attribute.
 
 [![cssreload](cssreload.gif)](cssreload.js)
