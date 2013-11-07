@@ -52,6 +52,7 @@ body {
 
 .snippet-wrapper {
   margin: 10px 0;
+  padding-top: 10px;
   border-bottom: solid 1px;
 }
 
