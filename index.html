@@ -35,6 +35,7 @@
 <li><a href='#cachebuster'>cachebuster</a></li>
 <li><a href='#console-save'>console-save</a></li>
 <li><a href='#cssprettifier'>cssprettifier</a></li>
+<li><a href='#cssreload'>cssreload</a></li>
 <li><a href='#dataurl'>dataurl</a></li>
 <li><a href='#formcontrols'>formcontrols</a></li>
 <li><a href='#hashlink'>hashlink</a></li>
@@ -235,6 +236,66 @@
   <span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
   <span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">prismStyle</span><span class="p">);</span>
   <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;&lt;code&gt;&lt;pre&gt;&#39;</span> <span class="o">+</span> <span class="nx">highlighted</span> <span class="o">+</span> <span class="s1">&#39;&lt;/pre&gt;&lt;/code&gt;&#39;</span><span class="p">;</span>
+
+<span class="p">})();</span>
+</pre></div>
+</div><div class='snippet-wrapper' id='cssreload'><div class='snippet'><h3><a href='https://github.com/bgrins/devtools-snippets/tree/master/snippets/cssreload/cssreload.js'>cssreload.js</a> <a href='#cssreload'>#</a> &nbsp; <small style='float:right'><a href='snippets/cssreload/cssreload.js'>(view raw)</a></small></h3>
+
+<p>Removes then reload all the CSS files in the current page.</p>
+
+<p><a href="snippets/cssreload/cssreload.js"><img src="snippets/cssreload/cssreload.gif" alt="snippets/cssreload/cssreload" /></a></p>
+</div><div class="highlight"><pre><span class="c1">// cssreload.js</span>
+<span class="c1">// https://github.com/bgrins/devtools-snippets</span>
+<span class="c1">// Removes then reloads all the CSS files in the current page</span>
+
+<span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">function</span> <span class="nx">insertAfter</span><span class="p">(</span><span class="nx">newElement</span><span class="p">,</span> <span class="nx">targetElement</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nx">targetElement</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">parent</span><span class="p">.</span><span class="nx">lastChild</span> <span class="o">==</span> <span class="nx">targetElement</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">parent</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">newElement</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">parent</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">newElement</span><span class="p">,</span> <span class="nx">targetElement</span><span class="p">.</span><span class="nx">nextSibling</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">function</span> <span class="nx">reloadStyleSheet</span><span class="p">(</span><span class="nx">stylesheet</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">stylesheet</span><span class="p">.</span><span class="nx">ownerNode</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">clone</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+    <span class="nx">clone</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">addRandomToUrl</span><span class="p">(</span><span class="nx">clone</span><span class="p">.</span><span class="nx">href</span><span class="p">);</span>
+    <span class="nx">clone</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;load&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">element</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="nx">insertAfter</span><span class="p">(</span><span class="nx">clone</span><span class="p">,</span> <span class="nx">element</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kd">function</span> <span class="nx">addRandomToUrl</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// prevent CSS caching</span>
+    <span class="kd">var</span> <span class="nx">hasRnd</span> <span class="o">=</span> <span class="sr">/([?&amp;])_=[^&amp;]*/</span><span class="p">,</span>
+      <span class="nx">hasQueryString</span> <span class="o">=</span> <span class="sr">/\?/</span><span class="p">,</span>
+      <span class="nx">hasHash</span> <span class="o">=</span> <span class="sr">/(.+)#(.+)/</span><span class="p">,</span>
+      <span class="nx">hash</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nx">rnd</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">();</span>
+
+    <span class="kd">var</span> <span class="nx">hashMatches</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">hasHash</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">hashMatches</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">input</span> <span class="o">=</span> <span class="nx">hashMatches</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+      <span class="nx">hash</span> <span class="o">=</span> <span class="nx">hashMatches</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="nx">url</span> <span class="o">=</span> <span class="nx">hasRnd</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="o">?</span>
+    <span class="nx">input</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">hasRnd</span><span class="p">,</span> <span class="s2">&quot;$1_=&quot;</span> <span class="o">+</span> <span class="nx">rnd</span><span class="p">)</span> <span class="o">:</span>
+    <span class="nx">input</span> <span class="o">+</span> <span class="p">(</span><span class="nx">hasQueryString</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;&amp;&quot;</span> <span class="o">:</span> <span class="s2">&quot;?&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_=&quot;</span> <span class="o">+</span> <span class="nx">rnd</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">hash</span><span class="p">)</span> <span class="nx">url</span> <span class="o">+=</span> <span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">hash</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">url</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="p">[].</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">styleSheets</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">styleSheet</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">styleSheet</span><span class="p">.</span><span class="nx">href</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;reload &#39;</span> <span class="o">+</span> <span class="nx">styleSheet</span><span class="p">.</span><span class="nx">href</span><span class="p">);</span>
+    <span class="nx">reloadStyleSheet</span><span class="p">(</span><span class="nx">styleSheet</span><span class="p">);</span>
+  <span class="p">});</span>
 
 <span class="p">})();</span>
 </pre></div>
