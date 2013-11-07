@@ -1,4 +1,5 @@
 require 'kramdown'
+require 'json'
 
 task :build do
 
@@ -9,6 +10,7 @@ task :build do
     markup = ""
     all_folders = Dir["snippets/**/"]
     all_links = []
+    json_obj = []
 
     all_folders.drop(1).each do |folder|
         file = folder.split("/")[1];
@@ -21,6 +23,11 @@ task :build do
         cmd = "pygmentize -f html " + js_file
         pretty_code = `#{cmd}`
 
+        json_obj.push({
+            "name" => file,
+            "content" => File.read(js_file)
+        })
+
         all_links.push("<li><a href='##{file}'>#{file}</a></li>")
         new_heading = "<h3><a href='https://github.com/bgrins/devtools-snippets/tree/master/#{js_file}'>#{file}.js</a> <a href='##{file}'>#</a> &nbsp; <small style='float:right'><a href='#{js_file}'>(view raw)</a></small></h3>"
         krammed = krammed.gsub(/<h3.*<\/h3>/, new_heading);
@@ -32,6 +39,10 @@ task :build do
     File.open("index.html", "w") do |io|
         with_markup = template.gsub(regex, markup)
         io.write with_markup.gsub(link_regex, all_links.join("\n"))
+    end
+
+    File.open("snippets.json", "w") do |io|
+        io.write JSON.pretty_generate({ "scriptSnippets" => json_obj })
     end
 
 end
