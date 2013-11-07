@@ -42,7 +42,7 @@ task :build do
     end
 
     File.open("snippets.json", "w") do |io|
-        io.write JSON.generate(json_obj)
+        io.write JSON.pretty_generate({ "scriptSnippets" => json_obj })
     end
 
 end
