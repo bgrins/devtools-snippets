@@ -10,7 +10,7 @@
         if(!filename) filename = 'console.json'
 
         if(typeof data === "object"){
-            data = JSON.stringify(data)
+            data = JSON.stringify(data, undefined, 4)
         }
 
         var blob = new Blob([data], {type: 'text/json'}),

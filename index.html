@@ -181,7 +181,7 @@
         <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">filename</span><span class="p">)</span> <span class="nx">filename</span> <span class="o">=</span> <span class="s1">&#39;console.json&#39;</span>
 
         <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">data</span> <span class="o">===</span> <span class="s2">&quot;object&quot;</span><span class="p">){</span>
-            <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+            <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
         <span class="p">}</span>
 
         <span class="kd">var</span> <span class="nx">blob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="nx">data</span><span class="p">],</span> <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text/json&#39;</span><span class="p">}),</span>
