@@ -1,3 +1,7 @@
+// insert-css.js
+// https://github.com/bgrins/devtools-snippets
+// Click on an element to print out the closest hash link.
+
 function insertCss(code) {
   var style = document.createElement('style');
   style.type = 'text/css';
