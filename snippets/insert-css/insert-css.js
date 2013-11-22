@@ -1,6 +1,6 @@
 // insert-css.js
 // https://github.com/bgrins/devtools-snippets
-// Click on an element to print out the closest hash link.
+// Injects a snippet of CSS into the current page.
 
 function insertCss(code) {
   var style = document.createElement('style');
@@ -15,9 +15,9 @@ function insertCss(code) {
 }
 
 // Feel free to extend this snippet with your favorite CSS snippets.
-// Here's an example; which makes the current page high contrast.
+// Here's an example which makes the current page high contrast.
 // Notice the trailing backslashes, used to define multiline strings.
-insertCssHighContrast = function() {
+function insertCssHighContrast() {
   var css = '\
     * { background: white ! important; color: black !important } \
     :link, :link * { color: #0000EE !important } \
