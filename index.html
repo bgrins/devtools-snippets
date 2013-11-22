@@ -40,6 +40,7 @@
 <li><a href='#formcontrols'>formcontrols</a></li>
 <li><a href='#hashlink'>hashlink</a></li>
 <li><a href='#html_i18n_content'>html_i18n_content</a></li>
+<li><a href='#insert-css'>insert-css</a></li>
 <li><a href='#jquerify'>jquerify</a></li>
 <li><a href='#log'>log</a></li>
 <li><a href='#log-globals'>log-globals</a></li>
@@ -580,6 +581,40 @@ for <a href="http://developer.chrome.com/extensions/i18n.html">i18n</a> of Chrom
     <span class="nx">makeDownloadLink</span><span class="p">(</span><span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="nx">applyChromeI18nMessages</span> <span class="o">+</span> <span class="s1">&#39;)();&#39;</span><span class="p">,</span> <span class="s1">&#39;applyChromeI18nMessages.js&#39;</span><span class="p">,</span> <span class="s1">&#39;position:fixed;top:6em;left:50%;opacity:0.5&#39;</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">exception</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">exception</span><span class="p">.</span><span class="nx">stack</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div><div class='snippet-wrapper' id='insert-css'><div class='snippet'><h3><a href='https://github.com/bgrins/devtools-snippets/tree/master/snippets/insert-css/insert-css.js'>insert-css.js</a> <a href='#insert-css'>#</a> &nbsp; <small style='float:right'><a href='snippets/insert-css/insert-css.js'>(view raw)</a></small></h3>
+
+<p>Defines <code>insertCss()</code> function which injects a snippet of CSS into the current
+page.  After running the snippet, you can call it as follows: <code>insertCss('span { color: red !important; }');</code></p>
+
+<p><a href="snippets/insert-css/insert-css.js"><img src="snippets/insert-css/insert-css.png" alt="snippets/insert-css/insert-css" /></a></p>
+</div><div class="highlight"><pre><span class="c1">// insert-css.js</span>
+<span class="c1">// https://github.com/bgrins/devtools-snippets</span>
+<span class="c1">// Click on an element to print out the closest hash link.</span>
+
+<span class="kd">function</span> <span class="nx">insertCss</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">style</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;style&#39;</span><span class="p">);</span>
+  <span class="nx">style</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/css&#39;</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">style</span><span class="p">.</span><span class="nx">styleSheet</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// IE</span>
+    <span class="nx">style</span><span class="p">.</span><span class="nx">styleSheet</span><span class="p">.</span><span class="nx">cssText</span> <span class="o">=</span> <span class="nx">code</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// Other browsers</span>
+    <span class="nx">style</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">code</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;head&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">style</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Feel free to extend this snippet with your favorite CSS snippets.</span>
+<span class="c1">// Here&#39;s an example; which makes the current page high contrast.</span>
+<span class="c1">// Notice the trailing backslashes, used to define multiline strings.</span>
+<span class="nx">insertCssHighContrast</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">css</span> <span class="o">=</span> <span class="s1">&#39;\</span>
+<span class="s1">    * { background: white ! important; color: black !important } \</span>
+<span class="s1">    :link, :link * { color: #0000EE !important } \</span>
+<span class="s1">    :visited, :visited * { color: #551A8B !important } \</span>
+<span class="s1">  &#39;</span><span class="p">;</span>
+    <span class="nx">insertCss</span><span class="p">(</span><span class="nx">css</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div><div class='snippet-wrapper' id='jquerify'><div class='snippet'><h3><a href='https://github.com/bgrins/devtools-snippets/tree/master/snippets/jquerify/jquerify.js'>jquerify.js</a> <a href='#jquerify'>#</a> &nbsp; <small style='float:right'><a href='snippets/jquerify/jquerify.js'>(view raw)</a></small></h3>

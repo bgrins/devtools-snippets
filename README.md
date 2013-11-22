@@ -7,20 +7,12 @@ View them all on a single page: http://bgrins.github.io/devtools-snippets/ or al
 
 If you have a useful snippet or updates to an existing one that you'd like to share, please contribute it or open an issue!  Feel free to use, modify, or share any of these snippets.
 
-## To Enable DevTools Snippets in Chrome
+## To Use DevTools Snippets in Chrome
 
-*Note: snippets are enabled by default in Chrome Canary and will be usable without changing your settings soon. You can read more about [snippets at the Chrome developer tools documentation](https://developers.google.com/chrome-developer-tools/docs/authoring-development-workflow#snippets).*
+You can read more about [snippets at the Chrome developer tools documentation](https://developers.google.com/chrome-developer-tools/docs/authoring-development-workflow#snippets).
 
 * Open Chrome.
-* Navigate to `chrome://flags` -> `Enable Developer Tools experiments`.
-* Open Devtools -> `Settings` -> `Developer Tools Experiments` -> `Enable "Snippets support"`.
-* Close and reopen devtools.
-* Open "Sources" panel.
 * Go to "Snippets" tab, and add whichever ones you want.
-
-![Chrome Flags](screenshots/chrome-flags.png)
-
-![Chrome Enable Snippets](screenshots/chrome-enable-snippets.png)
 
 ![Chrome Snippets](screenshots/chrome-snippets.png)
 
