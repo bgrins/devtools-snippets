@@ -52,7 +52,6 @@ try {
     var i18nForInnerText = function(select, messages) {
         var nds = document.querySelectorAll(select);
         for (i = 0, len = nds.length; i < len; i++) {
-            // .innerText contains newline characters in Chrome, while .textContent loses them.
             var value = nds[i].innerText;
             if (nds[i].childElementCount === 0 && value) {
                 var key = nds[i].className;
@@ -108,7 +107,6 @@ try {
                         var value = nds[i].getAttribute('value');
                         var key = nds[i].getAttribute('i18n-content');
                         if (value === null) {
-                            // .innerText contains newline characters in Chrome, while .textContent loses them.
                             nds[i].innerText = chrome.i18n.getMessage(key);
                         } else {
                             nds[i].setAttribute('value', chrome.i18n.getMessage(key));
