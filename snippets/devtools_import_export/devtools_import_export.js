@@ -60,6 +60,17 @@
                 var w = window.open("", "");
                 w.document.title = title;
                 w.document.body.appendChild(document.createElement('div').appendChild(div).parentElement);
+                var aClose = document.createElement('a');
+                aClose.innerHTML = 'Close here (<strong>[ x ]</strong> crashes canary)';
+                aClose.href = '';
+                var closeDiv = document.createElement('div');
+                closeDiv.appendChild(aClose);
+                closeDiv.setAttribute('style', 'position:fixed; top: 0; right: 0; padding: 1em;');
+                w.document.body.appendChild(closeDiv);
+                aClose.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    event.view.close();
+                }, false);
                 if (location.origin === "chrome-devtools://devtools") {
                     var importSnippets = document.createElement('input');
                     importSnippets.type = 'file';
