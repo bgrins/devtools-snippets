@@ -585,13 +585,12 @@ for <a href="http://developer.chrome.com/extensions/i18n.html">i18n</a> of Chrom
 </pre></div>
 </div><div class='snippet-wrapper' id='insert-css'><div class='snippet'><h3><a href='https://github.com/bgrins/devtools-snippets/tree/master/snippets/insert-css/insert-css.js'>insert-css.js</a> <a href='#insert-css'>#</a> &nbsp; <small style='float:right'><a href='snippets/insert-css/insert-css.js'>(view raw)</a></small></h3>
 
-<p>Defines <code>insertCss()</code> function which injects a snippet of CSS into the current
-page.  After running the snippet, you can call it as follows: <code>insertCss('span { color: red !important; }');</code></p>
+<p>Defines <code>insertCss()</code> function which injects a snippet of CSS into the current page.  After running the snippet, you can call it as follows: <code>insertCss('span { color: red !important; }');</code></p>
 
 <p><a href="snippets/insert-css/insert-css.js"><img src="snippets/insert-css/insert-css.png" alt="snippets/insert-css/insert-css" /></a></p>
 </div><div class="highlight"><pre><span class="c1">// insert-css.js</span>
 <span class="c1">// https://github.com/bgrins/devtools-snippets</span>
-<span class="c1">// Click on an element to print out the closest hash link.</span>
+<span class="c1">// Injects a snippet of CSS into the current page.</span>
 
 <span class="kd">function</span> <span class="nx">insertCss</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">style</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;style&#39;</span><span class="p">);</span>
@@ -606,9 +605,9 @@ page.  After running the snippet, you can call it as follows: <code>insertCss('s
 <span class="p">}</span>
 
 <span class="c1">// Feel free to extend this snippet with your favorite CSS snippets.</span>
-<span class="c1">// Here&#39;s an example; which makes the current page high contrast.</span>
+<span class="c1">// Here&#39;s an example which makes the current page high contrast.</span>
 <span class="c1">// Notice the trailing backslashes, used to define multiline strings.</span>
-<span class="nx">insertCssHighContrast</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">insertCssHighContrast</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">css</span> <span class="o">=</span> <span class="s1">&#39;\</span>
 <span class="s1">    * { background: white ! important; color: black !important } \</span>
 <span class="s1">    :link, :link * { color: #0000EE !important } \</span>
