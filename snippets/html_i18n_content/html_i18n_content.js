@@ -52,6 +52,7 @@ try {
     var i18nForInnerText = function(select, messages) {
         var nds = document.querySelectorAll(select);
         for (i = 0, len = nds.length; i < len; i++) {
+            // TODO Please note we use .innerText because it preserves newline characters in Chrome, while .textContent loses them.
             var value = nds[i].innerText;
             if (nds[i].childElementCount === 0 && value) {
                 var key = nds[i].className;
@@ -67,7 +68,7 @@ try {
         var i18nNodes = document.querySelectorAll(select + '[i18n-content]');
         for (i = 0, len = i18nNodes.length; i < len; i++) {
             if (i18nNodes[i].hasAttribute('i18n-content') && i18nNodes[i].childElementCount > 0) {
-                console.warn('HTML elements have been added to\n%O\nPlease use only text and named character references (%o)!',
+                console.warn('HTML elements have been added to\n%O\nPlease only use text and named character references (%o)!',
                 i18nNodes[i], 'https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Introduction#Named_character_references');
             }
         }
@@ -118,6 +119,7 @@ try {
                         var value = nds[i].getAttribute('value');
                         var key = nds[i].getAttribute('i18n-content');
                         if (value === null) {
+                            // TODO Please note we use .innerText because it preserves newline characters in Chrome, while .textContent loses them.
                             nds[i].innerText = chrome.i18n.getMessage(key);
                         } else {
                             nds[i].setAttribute('value', chrome.i18n.getMessage(key));
