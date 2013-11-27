@@ -1,21 +1,38 @@
+//### devtools_import_export.js
 //
-// DevTools Import/Export Snippet for Google Chrome
+//### Developer Tools Import/Export Snippet for Google Chrome
 //
-// Source: https://raw.github.com/anaran/devtools-snippets/master/snippets/devtools_import_export/devtools_import_export.js
+//Source
+//-------
 //
-// Documentation: http://bgrins.github.io/devtools-snippets/#devtools_import_export
+//**Release** https://raw.github.com/bgrins/devtools-snippets/master/snippets/devtools_import_export.js
 //
-// Features
+//**Development** https://raw.github.com/anaran/devtools-snippets/master/snippets/devtools_import_export.js
 //
-//  Export Chrome Developer Tools information to JSON
-//      Source Snippets
-//      Command History
-//      localStorage
+//Documentation
+//-------
 //
-//  Import Source Snippets (from .js or JSON export) into Chrome Developer Tools
+//**Release** http://bgrins.github.io/devtools-snippets/#devtools_import_export
 //
-//  Export localStorage of websites to JSON
+//**Development** https://github.com/anaran/devtools-snippets/blob/devtools_import_export/snippets/devtools_import_export/README.md
 //
+//### Features
+//
+//-  Export Chrome Developer Tools Source Snippets
+//
+//    - All into Single JSON File
+//    - Individual Source Code Files
+//
+//-  Import Source Snippets into Chrome Developer Tools
+//
+//    - Select Multiple Files in Dialog Box
+//    - Drop Multiple Files
+//
+//        - Import Source Files
+//        - Import Previous Export File
+//        - Import devtools-snippets JSON File from http://bgrins.github.io/devtools-snippets/snippets.json
+//
+//Implementation by [anaran](https://github.com/anaran).
 (function() {
     try {
         function getDownloadFileName(count) {
@@ -47,11 +64,11 @@
         var title = 'DevTools Import/Export';
         var cancel = 'Cancel';
         var alertAndWarn = function(message) {
-            window.alert(message + "\nSee JavaScript console for the complete log of warnings");
+            window.alert(message + "\n----\nSee JavaScript console for the complete log of warnings");
             console.warn(message);
         }
         var alertAndError = function(message) {
-            window.alert(message + "\nSee JavaScript console for the complete log of errors");
+            window.alert(message + "\n----\nSee JavaScript console for the complete log of errors");
             console.error(message);
         }
         var div = document.createElement('div');
@@ -74,6 +91,7 @@
                 if (location.origin === "chrome-devtools://devtools") {
                     var importSnippets = document.createElement('input');
                     importSnippets.type = 'file';
+                    importSnippets.title = 'Select (or drop) one (or more) export (or source) files here for import.';
                     importSnippets.multiple = true;
                     importSnippets.setAttribute('style', 'border: 0.2em dashed silver');
                     div.appendChild(document.createElement('div').appendChild(document.createTextNode('Import Snippets individually or from exported localStorage.')).parentElement);
@@ -84,11 +102,14 @@
                     //                     reviewImports.name = "reviewImports";
                     reviewImports.type = "checkbox";
                     reviewImports.title = "Review each imported snippet in popup window.";
-                    reviewImports.checked = true;
+                    // TODO Please note that closing a review window curretly crashes canary.
+                    // See https://code.google.com/p/chromium/issues/detail?id=323031
+                    reviewImports.checked = false;
                     var reviewImportsLabel = document.createElement('label');
                     reviewImportsLabel.
                     for = "reviewImports";
-                    reviewImportsLabel.innerText = "review";
+                    // TODO Remove once https://code.google.com/p/chromium/issues/detail?id=323031 gets fixed.
+                    reviewImportsLabel.innerText = "review (crashes canary)";
                     div.appendChild(reviewImportsLabel);
                     div.appendChild(reviewImports);
 
@@ -131,7 +152,10 @@
                                 aNodeList[i].click();
                             }
                         } else {
-                            var localStorageBlob = new window.Blob([JSON.stringify(localStorage, ['scriptSnippets'], 2)], {
+                            var localStorageBlob = new window.Blob([JSON.stringify({
+                                'snippets': JSON.parse(localStorage.scriptSnippets)
+                                // TODO Please note order of keys -- first serializing name, then content.
+                            }, ['snippets', 'name', 'content'], 2)], {
                                 'type': 'text/utf-8'
                             });
                             var a = document.createElement('a');
@@ -151,14 +175,22 @@
                     var exportDiv = document.createElement('div');
                     div.appendChild(exportDiv.appendChild(exportButton).parentElement);
                     // exportTypeSelect
-                    //                    var exportTypeDiv = exportDiv.appendChild(document.createElement('div'));
                     var exportTypeSelect = document.createElement('select');
                     exportTypeSelect.multiple = false;
+                    exportTypeSelect.addEventListener('change', function(event) {
+                        if (exportTypeSelect.value === individualFiles.innerText) {
+                            missingFileTypeExtensionSelect.hidden = false;
+                            // missingFileTypeExtensionSelect.disabled = false;
+                        } else {
+                            missingFileTypeExtensionSelect.hidden = true;
+                            // missingFileTypeExtensionSelect.disabled = true;
+                        }
+                    }, false);
                     var singleFile = document.createElement('option');
                     var individualFiles = document.createElement('option');
                     singleFile.innerText = "All into single JSON file";
                     individualFiles.innerText = "Individual source code files";
-                    singleFile.title = "All snippets are saved into a single timestamped JSON file\n(e. g. " + getDownloadFileName('COUNT') + ')';
+                    singleFile.title = "All snippets are first saved into a single timestamped JSON file\n(e. g. " + getDownloadFileName('COUNT') + ')';
                     individualFiles.title = "Each snippet source code is saved by its name, adding a missing file type extension.";
                     exportTypeSelect.appendChild(individualFiles);
                     exportTypeSelect.appendChild(singleFile);
@@ -166,7 +198,6 @@
                     exportTypeSelect.value = singleFile.innerText;
                     // missingFileTypeExtensionSelect
                     var missingFileTypeExtensionSelect = document.createElement('select');
-                    missingFileTypeExtensionSelect.multiple = false;
                     var textFile = document.createElement('option');
                     var javaScriptFile = document.createElement('option');
                     // Documented in https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement
@@ -181,14 +212,15 @@
                     missingFileTypeExtensionSelect.appendChild(textFile);
                     exportDiv.appendChild(missingFileTypeExtensionSelect);
                     missingFileTypeExtensionSelect.value = javaScriptFile.innerText;
+                    missingFileTypeExtensionSelect.multiple = false;
+                    missingFileTypeExtensionSelect.hidden = true;
                     // deleteButton
                     var deleteButton = document.createElement('input');
                     deleteButton.type = 'button';
-                    deleteButton.title = singleFile.title + 'first';
+                    deleteButton.title = singleFile.title;
                     deleteButton.value = 'Delete All Snippets';
                     deleteButton.addEventListener('click', function(event) {
                         exportSnippets(!"individually");
-                        //                        localStorageDownloadButton.click();
                         if (window.confirm("I have verified localStorage download completed successfully and would like to delete all snippets from Chrome now.\n\n(This cannot be undone when localStorage data has not been downloaded.)")) {
                             localStorage.scriptSnippets = "";
                         }
@@ -245,17 +277,30 @@
                             snippetArrayIndexByName[value.name] = index;
                         });
                         reader.onerror = errorHandler;
+                        reader.onabort = errorHandler;
                         reader.onload = function(readEvent) {
                             filesLoaded++;
                             console.timeEnd('read of ' + file.name);
                             var result = readEvent.target.result;
                             try {
-                                var scriptImportSnippets = JSON.parse(JSON.parse(result).scriptSnippets);
+                                var scriptImportSnippets, parsedResult = JSON.parse(result);
+                                // TODO Set to false to provoke error on snippets import for testing.
+                                if (true) {
+                                    if (parsedResult.hasOwnProperty('snippets')) {
+                                        scriptImportSnippets = parsedResult.snippets;
+                                    }
+                                }
+                                if (parsedResult.hasOwnProperty('scriptSnippets')) {
+                                    scriptImportSnippets = JSON.parse(parsedResult.scriptSnippets);
+                                }
                                 scriptImportSnippets.forEach(function(snippet) {
                                     createSnippetUpdateLastId(scriptSnippetsParsed, snippetArrayIndexByName, snippet.name, snippet.content, reviewImports.checked, overwriteExisting);
                                 });
                                 localStorage.scriptSnippets = JSON.stringify(scriptSnippetsParsed);
                             } catch (exception) {
+                                if (parsedResult) {
+                                    alertAndWarn(file.name + ' is parsable, but invalid, JSON.\nIt will be loaded as source code for your review.' + '\n\nIt should instead contain\n{"snippets":\n[{"name": "...", "content": "..."}, ...]}' + '\n\nor alternatively\n{"scriptSnippets":\n"[{\\"name\\": \\"...\\", \\"content\\": \\"...\\"}, ...]"}' + '\n\nInstead it starts with ' + result.substring(0, 40));
+                                }
                                 createSnippetUpdateLastId(scriptSnippetsParsed, snippetArrayIndexByName, file.name, result, reviewImports.checked, overwriteExisting);
                                 localStorage.scriptSnippets = JSON.stringify(scriptSnippetsParsed);
                             }
@@ -269,21 +314,30 @@
                             // TODO files are added to head of the list, so we have to process in reverse order.
                             //                            console.log("Importing snippet files, please wait...");
                             for (var i = 0, len = event.target.files.length; i < len; i++) {
+                                // TODO Please note this is asychronous and does not block!
                                 readFileUpdateUI(event.target.files[i]);
                             }
                         }
+                        // TODO this kills an in-progress read!
+                        // window.close();
                         //                        w.setInterval(refreshSnippetDisplay, 3000);
-                        if (w.confirm('Please confirm to close ' + title + ' now.\n\ndevtools will also be closed to avoid stale snippet information.\n\n')) {
-                            //                            w.location.reload(true);
-                            //                            window.location.reload(true);
-                            window.close();
-                            w.close();
-                        }
-                        //                        WebInspector.scriptSnippetModel.project().refresh();
+                        //                         if (w.confirm('Please confirm to close ' + title + ' now.\n\ndevtools will also be closed to avoid stale snippet information.\n\n')) {
+                        //                            w.location.reload(true);
+                        //                            window.location.reload(true);
+                        //                        w.close();
+                        // window.close();
+                        //                         }
                     }, false);
 
                     function errorHandler(domError) {
-                        alertAndWarn(domError);
+                        console.log(domError);
+                        alertAndWarn(JSON.stringify(domError, function(key, value) {
+                            if (key && value instanceof Object) {
+                                return value.toString();
+                            } else {
+                                return value;
+                            }
+                        }));
                     }
                     var handleDrop = function(file) { //$NON-NLS-0$
                         readFileUpdateUI(file);
@@ -322,7 +376,6 @@
                     }, false && "useCapture"); //$NON-NLS-0$ //$NON-NLS-1$
                 }
                 var refreshSnippetDisplay = function() {
-                    //                localStorageDownloadButton.value = 'Export All ' + localStorage.length + ' localStorage Entries';
                     if (location.origin === "chrome-devtools://devtools") {
                         var nds = snippetLinks.querySelectorAll('div');
                         for (var i = 0, len = nds.length; i < len; i++) {
@@ -335,7 +388,7 @@
                             });
                             var a = document.createElement('a');
                             a.href = URL.createObjectURL(blob);
-                            if (snippet.name.match(/\.[a-z]+$/i)) {
+                            if (snippet.name.match(/\.[a-z]+$/i) || missingFileTypeExtensionSelect.hidden) {
                                 a.download = snippet.name;
                             } else {
                                 a.download = snippet.name + missingFileTypeExtensionSelect.value;

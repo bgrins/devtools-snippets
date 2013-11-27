@@ -2,23 +2,36 @@
 
 ### Developer Tools Import/Export Snippet for Google Chrome
 
-**Source** https://raw.github.com/anaran/devtools-snippets/master/snippets/devtools_import_export.js
+Source
+-------
 
-**Documentation** http://bgrins.github.io/devtools-snippets/#devtools_import_export
+**Release** https://raw.github.com/bgrins/devtools-snippets/master/snippets/devtools_import_export.js
+
+**Development** https://raw.github.com/anaran/devtools-snippets/master/snippets/devtools_import_export.js
+
+Documentation
+-------
+
+**Release** http://bgrins.github.io/devtools-snippets/#devtools_import_export
+
+**Development** https://github.com/anaran/devtools-snippets/blob/devtools_import_export/snippets/devtools_import_export/README.md
 
 ### Features
 
--  Export Chrome Developer Tools information to JSON
+-  Export Chrome Developer Tools Source Snippets
 
-    - Source Snippets
+    - All into Single JSON File
+    - Individual Source Code Files
 
-    - Command History
 
-    - localStorage
+-  Import Source Snippets into Chrome Developer Tools
 
--  Import Source Snippets (from .js or JSON export) into Chrome Developer Tools
+    - Select Multiple Files in Dialog Box
+    - Drop Multiple Files
 
--  Export localStorage of websites to JSON
+        - Import Source Files
+        - Import Previous Export File
+        - Import devtools-snippets JSON File from http://bgrins.github.io/devtools-snippets/snippets.json
 
 Implementation by [anaran](https://github.com/anaran).
 
@@ -39,9 +52,9 @@ Implementation by [anaran](https://github.com/anaran).
 
 [end](#step-13) [forward](#step-2) [overview](#typical-use-cases)
 
-Open Source Tab with `Ctrl+Shift+I` and `Ctrl+3`
+Open Developer Tools with `Ctrl`+`Shift`+`I`.
 
-![][dtie01]
+See [Chrome DevTools Keyboard Shortcuts](https://developers.google.com/chrome-developer-tools/docs/shortcuts).
 
 ### Step 2
 
@@ -63,92 +76,55 @@ Accept the automatically generated snippet name
 
 [back](#step-3) [forward](#step-5) [overview](#typical-use-cases)
 
-Copy raw contents of the devtools_import_export.js snippet
+Copy raw contents of the devtools_import_export.js snippet.
+
+See [Source](#source)
 
 ![][dtie04]
-
-### Step 5
-
-[back](#step-4) [forward](#step-6) [overview](#typical-use-cases)
-
-Choose to inspect the current webpage by clicking the "Open DevTools Import/Export" link
-
-![][dtie05]
-
-### Step 6
-
-[back](#step-5) [forward](#step-7) [overview](#typical-use-cases)
-
-Click the "Export All n localStorage Entries" if you like
-
-![][dtie06]
 
 ### Step 7
 
 [back](#step-6) [forward](#step-8) [overview](#typical-use-cases)
 
-Undock devtools into separate window, press `Ctrl+Shift+I` `Ctrl+3` and select "Script snipper #109" and Run it
+Undock Developer Tools into separate window.
 
-![][dtie07]
+![][dtie14]
+
+Press `Ctrl`+`Shift`+`I` in Developer Tools to inspect it (to get access to snippets storage)
+
+Select "Script snippet #109" and Run it
+
+![][dtie15]
 
 ### Step 8
 
 [back](#step-7) [forward](#step-9) [overview](#typical-use-cases)
 
-A new tab, "DevTools Import/Export", opens. In addition to localStorage it also shows information about available console command history and snippets. Click "Import Snippets" and pick a previously saved export of localStorage.
+A new window, "DevTools Import/Export", opens.
 
-![][dtie08]
+Click "Import Snippets" and pick a local download of http://bgrins.github.io/devtools-snippets/snippets.json.
+
+![][dtie16]
 
 ### Step 9
 
 [back](#step-8) [forward](#step-10) [overview](#typical-use-cases)
 
-Pick a file from your downloads folder, named similar to, e.g. "localStorage_2013-11-01T130645.378Z.txt"
+Delete all Snippets if you like.
 
-![][dtie09]
+They will always exported to a single JSON file first.
 
-### Step 10
-
-[back](#step-9) [forward](#step-11) [overview](#typical-use-cases)
-
-"DevTools Import/Export" updates within 3 seconds to reflect the newly imported snippets available for export now.
-
-![][dtie10]
-
-### Step 11
-
-[back](#step-10) [forward](#step-12) [overview](#typical-use-cases)
-
-Click "Show All n Entries Console Command History" to see the last commands you used in the console for debugging.
-
-![][dtie11]
-
-### Step 12
-
-[back](#step-11) [forward](#step-13) [overview](#typical-use-cases)
-
-Click "Delete All n Snippets".
-
-This will automatically perform `Delete All n locaStorage Entries` for you.
-
-It will then ask you for confirmation you have acually verified the successful backup export of localStorage data containing snippets source code, among other information.
+It will then ask you for confirmation you have acually verified the successful backup export of localStorage data containing snippets source code.
 
 It will finally delete all snippets if you confirm with `OK`. You can still `Cancel` at this point.
 
-![][dtie12]
+"DevTools Import/Export" updates every 3 seconds to reflect the currently available snippets (e.g. after import or delete).
 
-### Step 13
-
-[back](#step-12) [start](#step-1)
-
-"DevTools Import/Export" updates within 3 seconds to confirm all snippets have been deleted, including the copy of devtools_import_export.js
-
-![][dtie13]
-
+![][dtie17]
 
 [dtie01]: dtie01.png "We start out with no snippets installed, devtools docked to main window"
 [dtie02]: dtie02.png "We still see no sources displayed"
-[dtie03]: dtie03.png "The Source tab now displays the empty content of the new snippet, 'Script snipper #109'"
+[dtie03]: dtie03.png "The Source tab now displays the empty content of the new snippet, 'Script snippet #109'"
 [dtie04]: dtie04.png "Open https://raw.github.com/anaran/devtools-snippets/master/snippets/devtools_import_export.js an chrome, copy and paste the contents to the snippet Source tab. Then press Ctrl+Enter or the |> button to 'Run snippet'"
 [dtie05]: dtie05.png "A popup informs us of the two major use cases: 1. inspect the webpage, 2. import/export of devtools data (snippets, command history, localStorage)"
 [dtie06]: dtie06.png "This is a handy way to save and inspect data saved in localStorage of the visited website."
@@ -159,3 +135,7 @@ It will finally delete all snippets if you confirm with `OK`. You can still `Can
 [dtie11]: dtie11.png "This console history list is easily navigated and can be downloaded as a standalone .html file which features the same easy navigation of the history. The information is read-only, but can be copied or dragged to other editable areas."
 [dtie12]: dtie12.png "Deleting all snippets can be useful when you keep them under version control outside chrome and you want to import a new set, e.g. after merging with exports from other browsers."
 [dtie13]: dtie13.png "We are now back at the state at the beginning of this demo, except for changes to console history and other localStorage information you may have made."
+[dtie14]: dtie14.png "Undock devtools in preparation for inspecting it."
+[dtie15]: dtie15.png "Run devtools 'Script snippet #109' from 'Deveoper Tools chrome-devtools://devtools/bundled/devtools.html...'."
+[dtie16]: dtie16.png "DevTools Import/Export Window, featuring various import, export options."
+[dtie17]: dtie17.png "Delete All n Snippets first exports them all to single JSON file."
