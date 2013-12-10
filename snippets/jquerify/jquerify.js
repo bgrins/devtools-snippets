@@ -9,9 +9,10 @@
     s.setAttribute('src', '//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js');
     document.body.appendChild(s);
     s.addEventListener('load', function(){
+        console.log('jquery loaded!');
+        
         jQuery.noConflict();
     });
-    console.log('jquery loaded!');
   }
 
 })();
