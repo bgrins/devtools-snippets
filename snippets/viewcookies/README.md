@@ -1,5 +1,5 @@
 ### viewcookies.js
 
-Shows all cookies stored in document.cookies in a nice little table.
+Shows all cookies stored in document.cookies in a console.table.
 
 [![viewcookies](viewcookies.png)](viewcookies.js)
