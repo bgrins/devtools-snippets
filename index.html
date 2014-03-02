@@ -58,7 +58,7 @@
         <div class="snippets">
         <div class='snippet-wrapper' id='allcolors'><div class='snippet'><h3><a href='https://github.com/bgrins/devtools-snippets/tree/master/snippets/allcolors/allcolors.js'>allcolors.js</a> <a href='#allcolors'>#</a> &nbsp; <small style='float:right'><a href='snippets/allcolors/allcolors.js'>(view raw)</a></small></h3>
 
-<p>Print out all colors from computed styles used in elements on the page.  <em>Uses styled console.log calls to visualize each color</em>.</p>
+<p>Print out all colors from computed styles used in elements on the page.  Uses styled console.log calls to visualize each color.</p>
 
 <p><a href="snippets/allcolors/allcolors.js"><img src="snippets/allcolors/allcolors.png" alt="snippets/allcolors/allcolors" /></a></p>
 </div><div class="highlight"><pre><span class="c1">// allcolors.js</span>
@@ -685,10 +685,19 @@ for <a href="http://developer.chrome.com/extensions/i18n.html">i18n</a> of Chrom
 <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 
   <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">dollarInUse</span> <span class="o">=</span> <span class="o">!!</span><span class="nb">window</span><span class="p">.</span><span class="nx">$</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
     <span class="nx">s</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">,</span> <span class="s1">&#39;//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js&#39;</span><span class="p">);</span>
+    <span class="nx">s</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;jQuery loaded!&#39;</span><span class="p">);</span>
+
+      <span class="k">if</span><span class="p">(</span><span class="nx">dollarInUse</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">jQuery</span><span class="p">.</span><span class="nx">noConflict</span><span class="p">();</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;`$` already in use; use `jQuery`&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+
     <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;jquery loaded!&#39;</span><span class="p">);</span>
   <span class="p">}</span>
 
 <span class="p">})();</span>

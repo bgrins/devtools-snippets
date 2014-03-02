@@ -42,7 +42,7 @@
     },
     {
       "name": "jquerify",
-      "content": "// jquerify.js\n// https://github.com/bgrins/devtools-snippets\n// Add jQuery to any page that does not have it already.\n\n(function () {\n\n  if ( !window.jQuery ) {\n    var s = document.createElement('script');\n    s.setAttribute('src', '//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js');\n    document.body.appendChild(s);\n    console.log('jquery loaded!');\n  }\n\n})();\n"
+      "content": "// jquerify.js\n// https://github.com/bgrins/devtools-snippets\n// Add jQuery to any page that does not have it already.\n\n(function () {\n\n  if ( !window.jQuery ) {\n    var dollarInUse = !!window.$;\n    var s = document.createElement('script');\n    s.setAttribute('src', '//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js');\n    s.addEventListener('load', function(){\n      console.log('jQuery loaded!');\n\n      if(dollarInUse) {\n        jQuery.noConflict();\n        console.log('`$` already in use; use `jQuery`');\n      }\n    });\n\n    document.body.appendChild(s);\n  }\n\n})();\n"
     },
     {
       "name": "log",
