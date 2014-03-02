@@ -48,6 +48,7 @@
 <li><a href='#plainforms'>plainforms</a></li>
 <li><a href='#querystringvalues'>querystringvalues</a></li>
 <li><a href='#showheaders'>showheaders</a></li>
+<li><a href='#viewcookies'>viewcookies</a></li>
 <li><a href='#wrapelement'>wrapelement</a></li>
         </ul>
       </div>
@@ -876,6 +877,30 @@ for <a href="http://developer.chrome.com/extensions/i18n.html">i18n</a> of Chrom
   <span class="nx">console</span><span class="p">.</span><span class="nx">groupEnd</span><span class="p">(</span><span class="s2">&quot;Request Headers&quot;</span><span class="p">);</span>
 
 <span class="p">})();</span>
+</pre></div>
+</div><div class='snippet-wrapper' id='viewcookies'><div class='snippet'><h3><a href='https://github.com/bgrins/devtools-snippets/tree/master/snippets/viewcookies/viewcookies.js'>viewcookies.js</a> <a href='#viewcookies'>#</a> &nbsp; <small style='float:right'><a href='snippets/viewcookies/viewcookies.js'>(view raw)</a></small></h3>
+
+<p>Shows all cookies stored in document.cookies in a console.table.</p>
+
+<p><a href="snippets/viewcookies/viewcookies.js"><img src="snippets/viewcookies/viewcookies.png" alt="snippets/viewcookies/viewcookies" /></a></p>
+</div><div class="highlight"><pre><span class="c1">// viewcookies.js</span>
+<span class="c1">// https://github.com/bgrins/devtools-snippets</span>
+<span class="c1">// Shows all cookies stored in document.cookies in a console.table</span>
+
+<span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+
+  <span class="kd">var</span> <span class="nx">rawCookies</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">),</span>
+      <span class="nx">cookies</span> <span class="o">=</span> <span class="p">[];</span>
+
+  <span class="nx">rawCookies</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">cookie</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">parsedCookie</span> <span class="o">=</span> <span class="nx">cookie</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">),</span>
+        <span class="nx">cookieData</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">cookies</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="s1">&#39;key&#39;</span><span class="o">:</span> <span class="nx">parsedCookie</span><span class="p">.</span><span class="nx">shift</span><span class="p">(),</span> <span class="s1">&#39;value&#39;</span><span class="o">:</span> <span class="nb">decodeURIComponent</span><span class="p">(</span><span class="nx">parsedCookie</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">))</span> <span class="p">});</span>
+  <span class="p">});</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">table</span><span class="p">(</span><span class="nx">cookies</span><span class="p">);</span>
+
+<span class="p">})()</span>
 </pre></div>
 </div><div class='snippet-wrapper' id='wrapelement'><div class='snippet'><h3><a href='https://github.com/bgrins/devtools-snippets/tree/master/snippets/wrapelement/wrapelement.js'>wrapelement.js</a> <a href='#wrapelement'>#</a> &nbsp; <small style='float:right'><a href='snippets/wrapelement/wrapelement.js'>(view raw)</a></small></h3>
 

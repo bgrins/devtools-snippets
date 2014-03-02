@@ -69,6 +69,10 @@
       "content": "// showheaders.js\n// https://github.com/bgrins/devtools-snippets\n// Print out response headers for current URL.\n\n(function() {\n\n  var request=new XMLHttpRequest();\n  request.open('HEAD',window.location,false);\n  request.send(null);\n\n  var headers = request.getAllResponseHeaders();\n  var tab = headers.split(\"\\n\").map(function(h) {\n    return { \"Key\": h.split(\": \")[0], \"Value\": h.split(\": \")[1] }\n  }).filter(function(h) { return h.Value !== undefined; });\n\n  console.group(\"Request Headers\");\n  console.log(headers);\n  console.table(tab);\n  console.groupEnd(\"Request Headers\");\n\n})();\n"
     },
     {
+      "name": "viewcookies",
+      "content": "// viewcookies.js\n// https://github.com/bgrins/devtools-snippets\n// Shows all cookies stored in document.cookies in a console.table\n\n(function(){\n\n  var rawCookies = document.cookie.split(';'),\n      cookies = [];\n\n  rawCookies.forEach(function(cookie) {\n    var parsedCookie = cookie.split('='),\n        cookieData = {};\n    cookies.push({ 'key': parsedCookie.shift(), 'value': decodeURIComponent(parsedCookie.join('=')) });\n  });\n\n  console.table(cookies);\n\n})()\n"
+    },
+    {
       "name": "wrapelement",
       "content": "// wrapelement.js\n// https://github.com/bgrins/devtools-snippets\n// Wrap a given element in a given type of element\n// wrapElement('.foo', 'h1');\n// wrapElement(document.querySelector('#bar'), 'div');\n//\n// LICENSE: [MIT](http://gkatsev.mit-license.org)\n\n(function() {\n  window.wrapElement = function(el, whatToWrapIn) {\n    var newParent = document.createElement(whatToWrapIn),\n        oldParent,\n        nextSibling;\n\n    if (typeof el === 'string') {\n      el = document.querySelector(el);\n    }\n\n    oldParent = el.parentNode;\n    nextSibling = el.nextSibling;\n    newParent.appendChild(el);\n    if (nextSibling) {\n      oldParent.insertBefore(newParent, nextSibling);\n    } else {\n      oldParent.appendChild(newParent);\n    }\n  }\n\n})();\n"
     }
