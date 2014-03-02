@@ -9,14 +9,14 @@
     var s = document.createElement('script');
     s.setAttribute('src', '//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js');
     s.addEventListener('load', function(){
-        console.log('jquery loaded!');
-        
-        if(dollarInUse) {
-            jQuery.noConflict();
-            console.log('`$` already in use; use `jQuery`');
-        }
+      console.log('jQuery loaded!');
+
+      if(dollarInUse) {
+        jQuery.noConflict();
+        console.log('`$` already in use; use `jQuery`');
+      }
     });
-    
+
     document.body.appendChild(s);
   }
 
