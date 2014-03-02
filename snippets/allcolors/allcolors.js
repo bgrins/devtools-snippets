@@ -47,19 +47,9 @@
   });
 
   function rgbTextToRgbArray(rgbText) {
-    var rgbString;
-
-    if (rgbText.indexOf("rgba") == -1) {
-      rgbString = rgbText.replace("rgb(", "").replace(")", "");
-    } else {
-      rgbString = rgbText.replace("rgba(", "").replace(")", "");
-    }
-
-    var arrayOfRgbValues = rgbString.split(",").map(function (item) {
-      return parseInt(item, 10);
+    return rgbText.replace(/\s/g, "").match(/\d+,\d+,\d+/)[0].split(",").map(function(num) {
+      return parseInt(num, 10);
     });
-
-    return arrayOfRgbValues;
   }
 
   function componentToHex(c) {
@@ -76,8 +66,8 @@
 
   var allColorsSorted = [];
   for (var i in allColors) {
-    var rgbArray = rgbTextToRgbArray(i),
-      hexValue = rgbToHex(rgbArray);
+    var rgbArray = rgbTextToRgbArray(i);
+    var hexValue = rgbToHex(rgbArray);
 
     allColorsSorted.push({
       key: i,
