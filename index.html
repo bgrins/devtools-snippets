@@ -66,50 +66,92 @@
 <span class="c1">// Print out CSS colors used in elements on the page.</span>
 
 <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Should include colors from elements that have a border color but have a zero width?</span>
+  <span class="kd">var</span> <span class="nx">includeBorderColorsWithZeroWidth</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
   <span class="kd">var</span> <span class="nx">allColors</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="kd">var</span> <span class="nx">props</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;background-color&quot;</span><span class="p">,</span> <span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;border-top-color&quot;</span><span class="p">,</span> <span class="s2">&quot;border-right-color&quot;</span><span class="p">,</span> <span class="s2">&quot;border-bottom-color&quot;</span><span class="p">,</span> <span class="s2">&quot;border-left-color&quot;</span><span class="p">];</span>
-  <span class="kd">var</span> <span class="nx">skipColors</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;rgb(0, 0, 0)&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;rgba(0, 0, 0, 0)&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;rgb(255, 255, 255)&quot;</span><span class="o">:</span> <span class="mi">1</span> <span class="p">};</span>
+  <span class="kd">var</span> <span class="nx">skipColors</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;rgb(0, 0, 0)&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;rgba(0, 0, 0, 0)&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;rgb(255, 255, 255)&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">};</span>
 
   <span class="p">[].</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">),</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">nodeColors</span> <span class="o">=</span> <span class="p">{};</span>
     <span class="nx">props</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">prop</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="kc">null</span><span class="p">).</span><span class="nx">getPropertyValue</span><span class="p">(</span><span class="nx">prop</span><span class="p">);</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">color</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">skipColors</span><span class="p">[</span><span class="nx">color</span><span class="p">])</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="kc">null</span><span class="p">).</span><span class="nx">getPropertyValue</span><span class="p">(</span><span class="nx">prop</span><span class="p">),</span>
+        <span class="nx">thisIsABorderProperty</span> <span class="o">=</span> <span class="p">(</span><span class="nx">prop</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;border&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+        <span class="nx">notBorderZero</span> <span class="o">=</span> <span class="nx">thisIsABorderProperty</span> <span class="o">?</span> <span class="nb">window</span><span class="p">.</span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="kc">null</span><span class="p">).</span><span class="nx">getPropertyValue</span><span class="p">(</span><span class="nx">prop</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;width&quot;</span><span class="p">))</span> <span class="o">!==</span> <span class="s2">&quot;0px&quot;</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">colorConditionsMet</span><span class="p">;</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">includeBorderColorsWithZeroWidth</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">colorConditionsMet</span> <span class="o">=</span> <span class="nx">color</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">skipColors</span><span class="p">[</span><span class="nx">color</span><span class="p">];</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">colorConditionsMet</span> <span class="o">=</span> <span class="nx">color</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">skipColors</span><span class="p">[</span><span class="nx">color</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">notBorderZero</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">colorConditionsMet</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">allColors</span><span class="p">[</span><span class="nx">color</span><span class="p">])</span> <span class="p">{</span>
           <span class="nx">allColors</span><span class="p">[</span><span class="nx">color</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="nx">count</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
             <span class="nx">nodes</span><span class="o">:</span> <span class="p">[]</span>
           <span class="p">};</span>
         <span class="p">}</span>
+
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">nodeColors</span><span class="p">[</span><span class="nx">color</span><span class="p">])</span> <span class="p">{</span>
           <span class="nx">allColors</span><span class="p">[</span><span class="nx">color</span><span class="p">].</span><span class="nx">count</span><span class="o">++</span><span class="p">;</span>
           <span class="nx">allColors</span><span class="p">[</span><span class="nx">color</span><span class="p">].</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
         <span class="p">}</span>
+
         <span class="nx">nodeColors</span><span class="p">[</span><span class="nx">color</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
       <span class="p">}</span>
     <span class="p">});</span>
   <span class="p">});</span>
 
-  <span class="kd">var</span> <span class="nx">allColorsSorted</span> <span class="o">=</span> <span class="p">[];</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">allColors</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">allColorsSorted</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-      <span class="nx">key</span><span class="o">:</span> <span class="nx">i</span><span class="p">,</span>
-      <span class="nx">value</span><span class="o">:</span> <span class="nx">allColors</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+  <span class="kd">function</span> <span class="nx">rgbTextToRgbArray</span><span class="p">(</span><span class="nx">rgbText</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">rgbText</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s/g</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">).</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\d+,\d+,\d+/</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">num</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
     <span class="p">});</span>
   <span class="p">}</span>
+
+  <span class="kd">function</span> <span class="nx">componentToHex</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">hex</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">hex</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">?</span> <span class="s2">&quot;0&quot;</span> <span class="o">+</span> <span class="nx">hex</span> <span class="o">:</span> <span class="nx">hex</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">function</span> <span class="nx">rgbToHex</span><span class="p">(</span><span class="nx">rgbArray</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">rgbArray</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+      <span class="nx">g</span> <span class="o">=</span> <span class="nx">rgbArray</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+      <span class="nx">b</span> <span class="o">=</span> <span class="nx">rgbArray</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="k">return</span> <span class="s2">&quot;#&quot;</span> <span class="o">+</span> <span class="nx">componentToHex</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">+</span> <span class="nx">componentToHex</span><span class="p">(</span><span class="nx">g</span><span class="p">)</span> <span class="o">+</span> <span class="nx">componentToHex</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">allColorsSorted</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">allColors</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">rgbArray</span> <span class="o">=</span> <span class="nx">rgbTextToRgbArray</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">hexValue</span> <span class="o">=</span> <span class="nx">rgbToHex</span><span class="p">(</span><span class="nx">rgbArray</span><span class="p">);</span>
+
+    <span class="nx">allColorsSorted</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+      <span class="nx">key</span><span class="o">:</span> <span class="nx">i</span><span class="p">,</span>
+      <span class="nx">value</span><span class="o">:</span> <span class="nx">allColors</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span>
+      <span class="nx">hexValue</span><span class="o">:</span> <span class="nx">hexValue</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
   <span class="nx">allColorsSorted</span> <span class="o">=</span> <span class="nx">allColorsSorted</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">b</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">count</span> <span class="o">-</span> <span class="nx">a</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">count</span><span class="p">;</span>
   <span class="p">});</span>
 
   <span class="kd">var</span> <span class="nx">nameStyle</span> <span class="o">=</span> <span class="s2">&quot;font-weight:normal;&quot;</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">countStyle</span> <span class="o">=</span> <span class="s2">&quot;font-weight:bold;&quot;</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">colorStyle</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nx">colorStyle</span><span class="p">(</span><span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="s2">&quot;background:&quot;</span> <span class="o">+</span> <span class="nx">color</span> <span class="o">+</span> <span class="s2">&quot;;color:&quot;</span> <span class="o">+</span> <span class="nx">color</span> <span class="o">+</span> <span class="s2">&quot;;border:1px solid #333;&quot;</span><span class="p">;</span>
   <span class="p">};</span>
 
   <span class="nx">console</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="s2">&quot;All colors used in elements on the page&quot;</span><span class="p">);</span>
   <span class="nx">allColorsSorted</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">groupCollapsed</span><span class="p">(</span><span class="s2">&quot;%c    %c &quot;</span> <span class="o">+</span> <span class="nx">c</span><span class="p">.</span><span class="nx">key</span> <span class="o">+</span> <span class="s2">&quot; %c(&quot;</span> <span class="o">+</span> <span class="nx">c</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">count</span> <span class="o">+</span> <span class="s2">&quot; times)&quot;</span><span class="p">,</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">groupCollapsed</span><span class="p">(</span><span class="s2">&quot;%c    %c &quot;</span> <span class="o">+</span> <span class="nx">c</span><span class="p">.</span><span class="nx">key</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">c</span><span class="p">.</span><span class="nx">hexValue</span> <span class="o">+</span> <span class="s2">&quot; %c(&quot;</span> <span class="o">+</span> <span class="nx">c</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">count</span> <span class="o">+</span> <span class="s2">&quot; times)&quot;</span><span class="p">,</span>
       <span class="nx">colorStyle</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">key</span><span class="p">),</span> <span class="nx">nameStyle</span><span class="p">,</span> <span class="nx">countStyle</span><span class="p">);</span>
     <span class="nx">c</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
@@ -117,6 +159,7 @@
     <span class="nx">console</span><span class="p">.</span><span class="nx">groupEnd</span><span class="p">();</span>
   <span class="p">});</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">groupEnd</span><span class="p">(</span><span class="s2">&quot;All colors used in elements on the page&quot;</span><span class="p">);</span>
+
 <span class="p">})();</span>
 </pre></div>
 </div><div class='snippet-wrapper' id='cachebuster'><div class='snippet'><h3><a href='https://github.com/bgrins/devtools-snippets/tree/master/snippets/cachebuster/cachebuster.js'>cachebuster.js</a> <a href='#cachebuster'>#</a> &nbsp; <small style='float:right'><a href='snippets/cachebuster/cachebuster.js'>(view raw)</a></small></h3>
