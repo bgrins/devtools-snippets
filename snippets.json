@@ -45,12 +45,16 @@
       "content": "// jquerify.js\n// https://github.com/bgrins/devtools-snippets\n// Add jQuery to any page that does not have it already.\n\n(function () {\n\n  if ( !window.jQuery ) {\n    var dollarInUse = !!window.$;\n    var s = document.createElement('script');\n    s.setAttribute('src', '//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js');\n    s.addEventListener('load', function(){\n      console.log('jQuery loaded!');\n\n      if(dollarInUse) {\n        jQuery.noConflict();\n        console.log('`$` already in use; use `jQuery`');\n      }\n    });\n\n    document.body.appendChild(s);\n  }\n\n})();\n"
     },
     {
+      "name": "log-globals",
+      "content": "/*\n\tlog-globals\n\tby Sindre Sorhus\n\thttps://github.com/sindresorhus/log-globals\n\tMIT License\n*/\n(function () {\n\t'use strict';\n\n\tfunction getIframe() {\n\t\tvar el = document.createElement('iframe');\n\t\tel.style.display = 'none';\n\t\tdocument.body.appendChild(el);\n\t\tvar win = el.contentWindow;\n\t\tdocument.body.removeChild(el);\n\t\treturn win;\n\t}\n\n\tfunction detectGlobals() {\n\t\tvar iframe = getIframe();\n\t\tvar ret = Object.create(null);\n\n\t\tfor (var prop in window) {\n\t\t\tif (!(prop in iframe)) {\n\t\t\t\tret[prop] = window[prop];\n\t\t\t}\n\t\t}\n\n\t\treturn ret;\n\t}\n\n\tconsole.log(detectGlobals());\n})();\n"
+    },
+    {
       "name": "log",
       "content": "// log.js\n// https://github.com/bgrins/devtools-snippets\n// Adds a `log` function to window object.\n// http://www.briangrinstead.com/blog/console-log-helper-function\n\n(function() {\n\n  window.log = Function.prototype.bind.call(console.log, console);\n\n})();\n"
     },
     {
-      "name": "log-globals",
-      "content": "/*\n\tlog-globals\n\tby Sindre Sorhus\n\thttps://github.com/sindresorhus/log-globals\n\tMIT License\n*/\n(function () {\n\t'use strict';\n\n\tfunction getIframe() {\n\t\tvar el = document.createElement('iframe');\n\t\tel.style.display = 'none';\n\t\tdocument.body.appendChild(el);\n\t\tvar win = el.contentWindow;\n\t\tdocument.body.removeChild(el);\n\t\treturn win;\n\t}\n\n\tfunction detectGlobals() {\n\t\tvar iframe = getIframe();\n\t\tvar ret = Object.create(null);\n\n\t\tfor (var prop in window) {\n\t\t\tif (!(prop in iframe)) {\n\t\t\t\tret[prop] = window[prop];\n\t\t\t}\n\t\t}\n\n\t\treturn ret;\n\t}\n\n\tconsole.log(detectGlobals());\n})();\n"
+      "name": "overlay",
+      "content": "var storageKey = 'overlay-default';\nvar overlayDefault = localStorage.getItem(storageKey) || '';\nvar url = prompt('paste overlay url', overlayDefault);\nif (url) {\n    localStorage.setItem(storageKey, url);\n    var overlay = document.createElement('div');\n    overlay.style.position = 'absolute';\n    overlay.style.left = 0;\n    overlay.style.top = 0;\n    overlay.style.width = '100%';\n    overlay.style.height='100%';\n    overlay.style.backgroundImage = 'url(' + url + ')';\n    overlay.style.backgroundSize = 'cover';\n    overlay.style.zIndex=10000;\n    overlay.style.opacity = 0.5;\n    document.body.appendChild(overlay);\n}\n"
     },
     {
       "name": "performance",
