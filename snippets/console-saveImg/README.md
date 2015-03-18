@@ -13,5 +13,3 @@ mimeType (string) pass in the mime type of the images to download, blank will de
 #### Licence
 
 MIT
-
-[![console.save](console-save.png)](console-save.js)
