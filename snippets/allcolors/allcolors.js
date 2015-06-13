@@ -86,7 +86,7 @@
     return "background:" + color + ";color:" + color + ";border:1px solid #333;";
   };
 
-  console.group("Total colors used in elements on the page: " + window.location.href + " are " +allColorsSorted.length);
+  console.group("Total colors used in elements on the page: " + window.location.href + " are " + allColorsSorted.length);
   allColorsSorted.forEach(function (c) {
     console.groupCollapsed("%c    %c " + c.key + " " + c.hexValue + " %c(" + c.value.count + " times)",
       colorStyle(c.key), nameStyle, countStyle);
