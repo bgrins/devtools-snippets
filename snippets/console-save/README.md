@@ -1,6 +1,6 @@
 ### Console.save
 
-A simple way to save objects as .json fle from the console, includes a chrome extension along with a plain script.
+A simple way to save objects as .json files from the console, includes a chrome extension along with a plain script.
 
 #### Usage
 
