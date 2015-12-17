@@ -5,6 +5,6 @@
 
 (function() {
 
-  window.log = Function.prototype.bind.call(console.log, console);
+  window.log = Function.prototype.bind.call(function(obj){console.log(JSON.stringify(obj))}, console);
 
 })();
