@@ -1,6 +1,7 @@
 /*
 	log-globals
 	by Sindre Sorhus
+	modified by Andy Hawkins (http://a904guy.com)
 	https://github.com/sindresorhus/log-globals
 	MIT License
 */
