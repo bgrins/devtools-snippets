@@ -3,16 +3,25 @@
 // Shows all cookies stored in document.cookies in a console.table
 
 (function() {
+  'use strict';
+
   window.viewCookies = function() {
-    var rawCookies = document.cookie.split(';'), cookies = [];
-    rawCookies.forEach(function(cookie) {
-      var parsedCookie = cookie.split('='), cookieData = {};
-      cookies.push({
-        'key': parsedCookie.shift(),
-        'value': decodeURIComponent(parsedCookie.join('='))
-      });
-    });
-    console.table(cookies);
+    if (document.cookie) {
+      const cookies = document.cookie
+        .split(/; ?/)
+        .map(s => {
+          const [ , key, value ] = s.match(/^(.*?)=(.*)$/);
+          return {
+            key,
+            value: decodeURIComponent(value)
+          };
+        });
+
+      console.table(cookies);
+    }
+    else {
+      console.warn('document.cookie is empty!');
+    }
   };
 })();
 

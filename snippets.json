@@ -74,7 +74,7 @@
     },
     {
       "name": "viewcookies",
-      "content": "// viewcookies.js\n// https://github.com/bgrins/devtools-snippets\n// Shows all cookies stored in document.cookies in a console.table\n\n(function() {\n  window.viewCookies = function() {\n    var rawCookies = document.cookie.split(';'), cookies = [];\n    rawCookies.forEach(function(cookie) {\n      var parsedCookie = cookie.split('='), cookieData = {};\n      cookies.push({\n        'key': parsedCookie.shift(),\n        'value': decodeURIComponent(parsedCookie.join('='))\n      });\n    });\n    console.table(cookies);\n  };\n})();\n\nwindow.viewCookies();\n"
+      "content": "// viewcookies.js\n// https://github.com/bgrins/devtools-snippets\n// Shows all cookies stored in document.cookies in a console.table\n\n(function() {\n  'use strict';\n\n  window.viewCookies = function() {\n    if (document.cookie) {\n      const cookies = document.cookie\n        .split(/; ?/)\n        .map(s => {\n          const [ , key, value ] = s.match(/^(.*?)=(.*)$/);\n          return {\n            key,\n            value: decodeURIComponent(value)\n          };\n        });\n\n      console.table(cookies);\n    }\n    else {\n      console.warn('document.cookie is empty!');\n    }\n  };\n})();\n\nwindow.viewCookies();\n"
     },
     {
       "name": "wrapelement",
