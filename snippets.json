@@ -70,11 +70,11 @@
     },
     {
       "name": "showheaders",
-      "content": "// showheaders.js\n// https://github.com/bgrins/devtools-snippets\n// Print out response headers for current URL.\n\n(function() {\n\n  var request=new XMLHttpRequest();\n  request.open('HEAD',window.location,false);\n  request.send(null);\n\n  var headers = request.getAllResponseHeaders();\n  var tab = headers.split(\"\\n\").map(function(h) {\n    return { \"Key\": h.split(\": \")[0], \"Value\": h.split(\": \")[1] }\n  }).filter(function(h) { return h.Value !== undefined; });\n\n  console.group(\"Request Headers\");\n  console.log(headers);\n  console.table(tab);\n  console.groupEnd(\"Request Headers\");\n\n})();\n"
+      "content": "// showheaders.js\n// https://github.com/bgrins/devtools-snippets\n// Print out response headers for current URL.\n\n(function() {\n\n  var request=new XMLHttpRequest();\n  request.open('HEAD',window.location,true);\n  \n  request.onload = request.onerror = function () {\n    var headers = request.getAllResponseHeaders();\n    var tab = headers.split(\"\\n\").map(function(h) {\n      return { \"Key\": h.split(\": \")[0], \"Value\": h.split(\": \")[1] }\n    }).filter(function(h) { return h.Value !== undefined; });\n\n    console.group(\"Request Headers\");\n    console.log(headers);\n    console.table(tab);\n    console.groupEnd(\"Request Headers\");\n  };\n  \n  request.send(null);\n\n})();\n"
     },
     {
       "name": "viewcookies",
-      "content": "// viewcookies.js\n// https://github.com/bgrins/devtools-snippets\n// Shows all cookies stored in document.cookies in a console.table\n\n(function() {\n  window.viewCookies = function() {\n    var rawCookies = document.cookie.split(';'), cookies = [];\n    rawCookies.forEach(function(cookie) {\n      var parsedCookie = cookie.split('='), cookieData = {};\n      cookies.push({\n        'key': parsedCookie.shift(),\n        'value': decodeURIComponent(parsedCookie.join('='))\n      });\n    });\n    console.table(cookies);\n  };\n})();\n\nwindow.viewCookies();\n"
+      "content": "// viewcookies.js\n// https://github.com/bgrins/devtools-snippets\n// Shows all cookies stored in document.cookies in a console.table\n\n(function() {\n  'use strict';\n\n  window.viewCookies = function() {\n    if (document.cookie) {\n      const cookies = document.cookie\n        .split(/; ?/)\n        .map(s => {\n          const [ , key, value ] = s.match(/^(.*?)=(.*)$/);\n          return {\n            key,\n            value: decodeURIComponent(value)\n          };\n        });\n\n      console.table(cookies);\n    }\n    else {\n      console.warn('document.cookie is empty!');\n    }\n  };\n})();\n\nwindow.viewCookies();\n"
     },
     {
       "name": "wrapelement",
