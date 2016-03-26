@@ -70,7 +70,7 @@
     },
     {
       "name": "showheaders",
-      "content": "// showheaders.js\n// https://github.com/bgrins/devtools-snippets\n// Print out response headers for current URL.\n\n(function() {\n\n  var request=new XMLHttpRequest();\n  request.open('HEAD',window.location,false);\n  request.send(null);\n\n  var headers = request.getAllResponseHeaders();\n  var tab = headers.split(\"\\n\").map(function(h) {\n    return { \"Key\": h.split(\": \")[0], \"Value\": h.split(\": \")[1] }\n  }).filter(function(h) { return h.Value !== undefined; });\n\n  console.group(\"Request Headers\");\n  console.log(headers);\n  console.table(tab);\n  console.groupEnd(\"Request Headers\");\n\n})();\n"
+      "content": "// showheaders.js\n// https://github.com/bgrins/devtools-snippets\n// Print out response headers for current URL.\n\n(function() {\n\n  var request=new XMLHttpRequest();\n  request.open('HEAD',window.location,true);\n  \n  request.onload = request.onerror = function () {\n    var headers = request.getAllResponseHeaders();\n    var tab = headers.split(\"\\n\").map(function(h) {\n      return { \"Key\": h.split(\": \")[0], \"Value\": h.split(\": \")[1] }\n    }).filter(function(h) { return h.Value !== undefined; });\n\n    console.group(\"Request Headers\");\n    console.log(headers);\n    console.table(tab);\n    console.groupEnd(\"Request Headers\");\n  };\n  \n  request.send(null);\n\n})();\n"
     },
     {
       "name": "viewcookies",
