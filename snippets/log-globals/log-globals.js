@@ -29,5 +29,5 @@
 		return ret;
 	}
 
-	console.log(detectGlobals());
+	return detectGlobals();
 })();
