@@ -1,10 +1,11 @@
 var storageKey = 'overlay-default';
 var overlayDefault = localStorage.getItem(storageKey) || '';
 var url = prompt('paste overlay url', overlayDefault);
+var fixed = confirm('set as fixed?');
 if (url) {
     localStorage.setItem(storageKey, url);
     var overlay = document.createElement('div');
-    overlay.style.position = 'absolute';
+    overlay.style.position = fixed ? 'fixed' : 'absolute';
     overlay.style.left = 0;
     overlay.style.top = 0;
     overlay.style.width = '100%';
